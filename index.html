@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ระบบร่างแผนรายประมาณการ</title>
+<title>ระบบร่างแผนรายประมาณการ (ฉบับขยาย)</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap');
 
@@ -14,17 +14,18 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;color:var(--ink);font-size:16px;line-height:1.6}
 
-/* ---------- ส่วนหัว ---------- */
 header{background:var(--navy);color:#fff;border-bottom:4px solid var(--lane)}
-header .bar{max-width:980px;margin:0 auto;padding:20px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-header h1{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:26px;margin:0;line-height:1.2}
-header p{opacity:.78;font-size:14.5px;margin:6px 0 0}
+header .bar{max-width:1080px;margin:0 auto;padding:20px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+header h1{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:24px;margin:0;line-height:1.2}
+header p{opacity:.78;font-size:14px;margin:6px 0 0}
 .plate{background:#0b1424;border:2px solid var(--lane);border-radius:6px;padding:10px 20px;min-width:260px;text-align:right}
 .plate small{display:block;font-size:13px;opacity:.85}
-.plate b{font-family:'Chakra Petch',sans-serif;font-size:30px;font-weight:700;color:var(--lane);font-variant-numeric:tabular-nums}
+.plate b{font-family:'Chakra Petch',sans-serif;font-size:28px;font-weight:700;color:var(--lane);font-variant-numeric:tabular-nums}
 
-/* ---------- ขั้นตอน 1-2-3 ---------- */
-main{max-width:980px;margin:0 auto;padding:24px}
+.notice{max-width:1080px;margin:14px auto 0;padding:12px 16px;background:#fff8e1;border:1px solid #f0d879;border-radius:6px;font-size:14px;color:#6b5a10}
+.notice b{color:#4a3e08}
+
+main{max-width:1080px;margin:0 auto;padding:24px}
 .stepper{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
 .stepbtn{display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px 14px;cursor:pointer;font-family:inherit;font-size:15px;color:var(--ink2)}
 .stepbtn .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#e3eaf3;color:var(--ink2);display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',sans-serif;font-weight:700}
@@ -42,17 +43,16 @@ main{max-width:980px;margin:0 auto;padding:24px}
 .navrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:18px;border-top:1px solid var(--rule)}
 .navrow .right{display:flex;gap:10px;flex-wrap:wrap}
 
-/* ---------- ฟอร์ม ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
 label.f{display:grid;gap:5px;font-size:14px;color:var(--ink2);font-weight:500}
-input,select{font-family:inherit;font-size:15.5px;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:9px 11px;background:#f9fbfd;width:100%;min-width:0}
+input,select,textarea{font-family:inherit;font-size:15.5px;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:9px 11px;background:#f9fbfd;width:100%;min-width:0}
 input[type=number]{text-align:right;font-variant-numeric:tabular-nums}
 input[type=checkbox]{width:auto}
-input:focus,select:focus,button:focus-visible{outline:3px solid var(--lane);outline-offset:1px;border-color:var(--navy)}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--lane);outline-offset:1px;border-color:var(--navy)}
 input[readonly]{background:#eef2f7;color:var(--navy);font-family:'Chakra Petch',sans-serif;font-weight:600}
 .check{display:flex;align-items:center;gap:8px;font-size:15px}
 
-/* ประเภทงานแบบการ์ด */
 .seg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
 .seg{position:relative;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;cursor:pointer;background:#fff;display:grid;gap:3px}
 .seg input{position:absolute;opacity:0;pointer-events:none}
@@ -67,11 +67,10 @@ details.box[open] summary{margin-bottom:12px}
 .summary-note{font-size:14px;color:var(--ink2);margin-left:8px;font-weight:400}
 .hint{font-size:14px;color:var(--ink2);margin:10px 0 0}
 
-/* ---------- ตารางรายการ ---------- */
 .tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px}
 table{width:100%;border-collapse:collapse;font-size:14.5px}
 th,td{border-bottom:1px solid var(--rule);padding:8px 8px;vertical-align:middle}
-th{background:#f1f4f8;color:var(--ink2);font-weight:600;font-size:13.5px;text-align:left;white-space:nowrap}
+th{background:#f1f4f8;color:var(--ink2);font-weight:600;font-size:13px;text-align:left;white-space:nowrap}
 th.r,td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody.rows input{border-color:transparent;background:transparent;padding:7px 7px}
 tbody.rows input:hover{background:#f5f8fb;border-color:var(--rule)}
@@ -83,7 +82,6 @@ tr.total td{background:var(--navy);color:#fff;font-weight:600;border-color:var(-
 .empty{text-align:center;color:var(--ink2);padding:28px 10px}
 .itemcount{font-size:14px;color:var(--ink2)}
 
-/* ---------- ปุ่ม ---------- */
 button{font-family:inherit;font-size:15px;border-radius:4px;border:1px solid var(--navy);background:#fff;color:var(--navy);padding:9px 16px;font-weight:500;cursor:pointer}
 button:hover{background:#e6ecf4}
 button.primary{background:var(--navy);color:#fff}
@@ -92,10 +90,10 @@ button.ghost{border-color:transparent;background:transparent;color:var(--ink2);t
 button.ghost:hover{background:transparent;color:var(--navy)}
 button.del{border:none;color:var(--bad);padding:2px 8px;font-size:20px;line-height:1;background:transparent}
 button.del:hover{background:#fbe9e7}
+button.sm{padding:4px 9px;font-size:13px}
 button:disabled{opacity:.45;cursor:not-allowed}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 
-/* ---------- ขั้นที่ 3: ผลลัพธ์ ---------- */
 .tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--soft);border:1px solid var(--rule);border-radius:6px;padding:6px;margin-bottom:16px}
 .tab{border:none;background:transparent;color:var(--ink2);padding:9px 14px;font-weight:600}
 .tab.on{background:var(--navy);color:#fff}
@@ -115,11 +113,37 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .sign div{text-align:center;font-size:14px;color:var(--ink2)}
 .sign .line{border-bottom:1px solid var(--ink);height:40px;margin-bottom:6px}
 
-/* สถานะ */
 .chip{display:inline-block;font-size:14px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8edf3;color:var(--ink2)}
 .chip.ok{background:#dcf1e5;color:var(--ok)}
 .chip.lock{background:#fde7e4;color:var(--bad)}
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* ---------- ตัวแปร / token badges ---------- */
+.tok{display:inline-block;font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:4px;margin-right:4px}
+.tok.V{background:#e3eaf3;color:var(--navy)}
+.tok.M{background:#dcf1e5;color:var(--ok)}
+.tok.MT{background:#cdeedd;color:var(--ok)}
+.tok.O{background:#fde3cf;color:#9a4b12}
+.tok.F{background:#eadcf8;color:#5b2d8c}
+.tok.T{background:var(--lane);color:#3a2e00}
+
+/* ---------- modal ---------- */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(10,16,30,.55);z-index:50;align-items:flex-start;justify-content:center;overflow:auto;padding:30px 14px}
+.modal-bg.on{display:flex}
+.modal{background:#fff;border-radius:8px;max-width:980px;width:100%;padding:22px;position:relative}
+.modal h2{font-family:'Chakra Petch',sans-serif;margin:0 0 4px}
+.modal .x{position:absolute;top:14px;right:14px;border:none;background:transparent;font-size:22px;color:var(--ink2);cursor:pointer;padding:4px 10px}
+
+.formrow{display:grid;grid-template-columns:140px 90px 1fr 140px 36px;gap:8px;align-items:center;margin-bottom:8px}
+.formrow select,.formrow input{font-size:14px;padding:7px 9px}
+.formrow .vn{font-family:'Chakra Petch',sans-serif;font-weight:700;text-align:center;background:#eef2f7;border-radius:4px;padding:7px 4px;color:var(--navy)}
+@media (max-width:860px){.formrow{grid-template-columns:1fr 1fr;}}
+
+.report-line{display:flex;gap:8px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--rule);font-size:14.5px;flex-wrap:wrap}
+.report-line.total{font-weight:700;color:var(--navy);border-bottom:none;border-top:2px solid var(--navy);margin-top:6px;padding-top:10px}
+
+.libtable td,.libtable th{font-size:14px}
+.smallnote{font-size:13px;color:var(--ink2)}
 
 @media (max-width:720px){
   header h1{font-size:22px}
@@ -131,12 +155,13 @@ button:disabled{opacity:.45;cursor:not-allowed}
   .sign{grid-template-columns:1fr}
   .step{padding:18px}
   main{padding:14px}
+  .formrow{grid-template-columns:1fr}
 }
 
 @media print{
   @page{size:A4;margin:14mm}
   body{background:#fff;font-size:12px}
-  header,.stepper,#step1,#step2,.noprint,.keep,.navrow,details{display:none!important}
+  header,.stepper,#step1,#step2,.noprint,.keep,.navrow,details,.notice,.modal-bg{display:none!important}
   main{padding:0;max-width:none}
   #step3{display:block!important;border:none;padding:0}
   .tabpane{display:block!important;page-break-before:always}
@@ -152,8 +177,8 @@ button:disabled{opacity:.45;cursor:not-allowed}
 <header>
   <div class="bar">
     <div>
-      <h1>ระบบร่างแผนรายประมาณการ</h1>
-      <p>ทำตามทีละขั้นตอน 3 ขั้น ได้เอกสาร ปร.4 ปร.5 ปร.6 พร้อมพิมพ์</p>
+      <h1>ระบบร่างแผนรายประมาณการ (ฉบับขยาย)</h1>
+      <p>คำนวณ Factor F รายรายการ + เครื่องมือสร้างสูตรต้นทุนต่อหน่วย + ปร.4 / ปร.5 / ปร.6 / Break Down</p>
     </div>
     <div class="plate">
       <small>ค่าก่อสร้างรวม (บาท)</small>
@@ -161,6 +186,11 @@ button:disabled{opacity:.45;cursor:not-allowed}
     </div>
   </div>
 </header>
+
+<div class="notice noprint">
+  <b>ขอบเขตของระบบนี้:</b> คำนวณราคาต่อหน่วย, Factor F รายรายการ (แก้ไขเองได้), สูตรคำนวณต้นทุนตามบทที่ 7 ของคู่มือ และออกเอกสาร ปร.4/ปร.5/ปร.6 + Break Down พร้อมลำดับอนุมัติ ร่าง→ตรวจ→อนุมัติ
+  ระบบนี้<b>ไม่ได้</b>เชื่อมกับ OneLogin/Roadnet/Plannet/PN2021 ของกรม ไม่ดึงราคาวัสดุพาณิชย์จังหวัดอัตโนมัติ และไม่มีคลังรูปตัดแบบมาตรฐาน — ส่วนเหล่านี้อยู่ในเครือข่ายภายในหน่วยงานเท่านั้น
+</div>
 
 <main>
 
@@ -182,28 +212,49 @@ button:disabled{opacity:.45;cursor:not-allowed}
   <input type="hidden" id="type" value="construction">
 
   <div class="grid">
-    <label class="f">ชื่องาน<input id="name" type="text" placeholder="เช่น งานปรับปรุงอาคารที่พักอาศัย"></label>
-    <label class="f">รหัสงาน<input id="code" type="text" placeholder="เช่น 20530"></label>
+    <label class="f">ชื่องาน<input id="name" type="text" placeholder="เช่น งานปรับปรุงผิวทาง"></label>
+    <label class="f">รหัสงาน / BD Code<input id="code" type="text" placeholder="เช่น 22300"></label>
     <label class="f">หน่วยงาน<input id="agency" type="text" placeholder="เช่น แขวงทางหลวงหนองคาย"></label>
-    <label class="f">ปีงบประมาณ<input id="fy" type="text" placeholder="เช่น 2568"></label>
-    <label class="f">สถานที่<input id="place" type="text" placeholder="เช่น อำเภอเมือง จังหวัดหนองคาย"></label>
+    <label class="f">ปีงบประมาณ<input id="fy" type="text" placeholder="เช่น 2569"></label>
     <label class="f">วงเงินที่ได้รับ (บาท)<input id="budget" type="number" step="0.01" min="0" value="0" onfocus="this.select()"></label>
     <label class="f">จำนวนหน่วย<input id="units" type="number" step="1" min="1" value="1" onfocus="this.select()"></label>
-    <label class="f">ค่า F ที่ระบบคำนวณให้<input id="factorF" type="text" readonly></label>
   </div>
-  <p class="hint">วงเงินที่ได้รับ ใส่เฉพาะเมื่อมีวงเงินชัดเจน ระบบจะปรับยอดให้เท่าวงเงิน ถ้าไม่ใส่ระบบจะใช้ยอดที่คำนวณได้</p>
 
-  <label class="check" style="margin-top:14px"><input id="useF" type="checkbox" checked> คิดค่า F ด้วย (ใช้กับงานก่อสร้างเท่านั้น)</label>
+  <div class="sub-h">ที่ตั้งโครงการ / สายทาง</div>
+  <div class="grid">
+    <label class="f">สถานที่ / ตำบล-อำเภอ-จังหวัด<input id="place" type="text" placeholder="เช่น อำเภอเมือง จังหวัดหนองคาย"></label>
+    <label class="f">ทางหลวงหมายเลข / สายทาง<input id="roadNo" type="text" placeholder="เช่น ทล.1374"></label>
+    <label class="f">ตอน<input id="roadSection" type="text" placeholder="เช่น ตอนควบคุม 0101"></label>
+    <label class="f">กม. เริ่มต้น<input id="kmFrom" type="number" step="0.001" placeholder="เช่น 0.263" oninput="refresh()"></label>
+    <label class="f">กม. สิ้นสุด<input id="kmTo" type="number" step="0.001" placeholder="เช่น 9.029" oninput="refresh()"></label>
+    <label class="f">ระยะทาง (กม.) — คำนวณอัตโนมัติ<input id="distanceKm" type="text" readonly></label>
+  </div>
+  <p class="hint">ถ้าไม่ใช่งานถนน เว้นช่องสายทาง/กม. ไว้ว่างได้ ระบบจะไม่นำไปแสดงในเอกสาร</p>
+
+  <div class="sub-h">หมวด Factor F</div>
+  <div class="grid3">
+    <label class="f">หมวดงาน (มีผลกับวิธีคิดค่า F)
+      <select id="fCategory" onchange="refresh()">
+        <option value="building">งานอาคารและสิ่งปลูกสร้าง (ใช้ตาราง ว 481)</option>
+        <option value="road">งานทาง (กรอกค่า F เอง / อ้างอิงประกาศกรมฯ)</option>
+      </select>
+    </label>
+    <label class="check" style="align-self:end"><input id="useF" type="checkbox" checked onchange="refresh()"> คิดค่า F ด้วย</label>
+    <label class="f">ค่า F ที่ระบบคำนวณให้ (ค่าตั้งต้นของทั้งโครงการ)<input id="factorF" type="text" readonly></label>
+  </div>
+  <p class="hint">ค่า F นี้เป็นค่าตั้งต้นเท่านั้น — แต่ละรายการในขั้นที่ 2 แก้ไขค่า F เฉพาะแถวได้เอง เหมือนหน้าจอ Factor F ของระบบจริง</p>
 
   <details class="box">
-    <summary>เงื่อนไขขั้นสูง<span class="summary-note">ค่าเริ่มต้นตามหนังสือ ว 481 ไม่ต้องแก้ถ้าไม่จำเป็น</span></summary>
-    <div class="grid">
-      <label class="f">เงินล่วงหน้าจ่าย (%)<input id="pAdv" type="number" step="0.01" value="15" onfocus="this.select()"></label>
-      <label class="f">เงินประกันผลงาน (%)<input id="pGuar" type="number" step="0.01" value="10" onfocus="this.select()"></label>
-      <label class="f">ดอกเบี้ยเงินกู้ (%)<input id="pMlr" type="number" step="0.01" value="6" onfocus="this.select()"></label>
-      <label class="f">ภาษีมูลค่าเพิ่ม (%)<input id="pVat" type="number" step="0.01" value="7" onfocus="this.select()"></label>
+    <summary>เงื่อนไขขั้นสูงและการปรับยอด<span class="summary-note">ค่าเริ่มต้นตามหนังสือ ว 481 ไม่ต้องแก้ถ้าไม่จำเป็น</span></summary>
+    <div class="grid3">
+      <label class="f">เงินล่วงหน้าจ่าย (%)<input id="pAdv" type="number" step="0.01" value="15" onfocus="this.select()" oninput="refresh()"></label>
+      <label class="f">เงินประกันผลงาน (%)<input id="pGuar" type="number" step="0.01" value="10" onfocus="this.select()" oninput="refresh()"></label>
+      <label class="f">ดอกเบี้ยเงินกู้ / MLR (%)<input id="pMlr" type="number" step="0.01" value="6" onfocus="this.select()" oninput="refresh()"></label>
+      <label class="f">ภาษีมูลค่าเพิ่ม VAT (%)<input id="pVat" type="number" step="0.01" value="7" onfocus="this.select()" oninput="refresh()"></label>
+      <label class="f">เบิกจ่ายงวดเดียว (%)<input id="pOnce" type="number" step="0.01" value="100" onfocus="this.select()" oninput="refresh()"></label>
+      <label class="f">ปรับเพิ่ม/ลดยอดรวมเอง (บาท, +/-)<input id="adjustManual" type="number" step="0.01" value="0" onfocus="this.select()" oninput="refresh()"></label>
     </div>
-    <p class="hint">ค่า F ตามตารางงานอาคาร เงินล่วงหน้า 15% ประกัน 10% ดอกเบี้ย 6% VAT 7% ควรตรวจกับต้นฉบับก่อนใช้จริง</p>
+    <p class="hint">ค่า F ตามตารางงานอาคาร เงินล่วงหน้า 15% ประกัน 10% ดอกเบี้ย 6% VAT 7% ควรตรวจกับต้นฉบับก่อนใช้จริง ช่อง "ปรับเพิ่ม/ลดยอดรวมเอง" ตรงกับช่องปรับยอด +/- ในรูปที่ 2.36–2.37 และ 3.14 ของคู่มือ ใช้แทนหรือร่วมกับการปรับตามวงเงินที่ได้รับก็ได้</p>
   </details>
 
   <div class="navrow">
@@ -219,9 +270,13 @@ button:disabled{opacity:.45;cursor:not-allowed}
   <div class="toolbar">
     <div>
       <h2>ขั้นที่ 2: ใส่รายการงาน</h2>
-      <p class="lead" style="margin-bottom:0">กรอกราคาต่อ 1 หน่วย เช่น ราคากระเบื้อง 1 ตารางเมตร ระบบจะคูณจำนวนและรวมให้เอง</p>
+      <p class="lead" style="margin-bottom:0">กรอกราคาต่อ 1 หน่วยตรงๆ หรือกดปุ่ม <b>ƒ</b> เพื่อคำนวณราคาต่อหน่วยจากสูตร (บทที่ 7)</p>
     </div>
     <span id="itemCount" class="itemcount"></span>
+  </div>
+
+  <div class="actions" style="margin-top:4px">
+    <button onclick="openFormulaLib()">📐 จัดการสูตรคำนวณ (Formula Management)</button>
   </div>
 
   <datalist id="groupList"></datalist>
@@ -237,20 +292,21 @@ button:disabled{opacity:.45;cursor:not-allowed}
     <table>
       <thead>
         <tr>
-          <th style="width:16%">หมวด</th>
+          <th style="width:13%">หมวด</th>
           <th>รายการ</th>
-          <th style="width:10%">หน่วย</th>
-          <th class="r" style="width:9%">จำนวน</th>
-          <th class="r" style="width:12%">ค่าวัสดุ/หน่วย</th>
-          <th class="r" style="width:12%">ค่าแรง/หน่วย</th>
-          <th class="r" style="width:13%">รวม</th>
-          <th style="width:4%"></th>
+          <th style="width:8%">หน่วย</th>
+          <th class="r" style="width:8%">จำนวน</th>
+          <th class="r" style="width:11%">ค่าวัสดุ/หน่วย</th>
+          <th class="r" style="width:11%">ค่าแรง/หน่วย</th>
+          <th class="r" style="width:8%">Factor F<br><span class="smallnote">(ว่าง=อัตโนมัติ)</span></th>
+          <th class="r" style="width:12%">รวม</th>
+          <th style="width:9%"></th>
         </tr>
       </thead>
       <tbody id="itemBody" class="rows"></tbody>
     </table>
   </div>
-  <p class="hint">ใส่หมวดเพื่อจัดกลุ่มรายการ เช่น งานพื้น งานสี กด Enter ที่ช่องค่าแรงของแถวสุดท้ายเพื่อเพิ่มแถวใหม่ ถ้าไม่มีค่าแรงให้ใส่ 0</p>
+  <p class="hint">ใส่หมวดเพื่อจัดกลุ่มรายการ กด Enter ที่ช่องค่าแรงของแถวสุดท้ายเพื่อเพิ่มแถวใหม่ ถ้าไม่มีค่าแรงให้ใส่ 0 ช่อง Factor F ของแถว ถ้าเว้นว่างจะใช้ค่า F อัตโนมัติของทั้งโครงการ ถ้าใส่ตัวเลขเองจะยึดตามแถวนั้นแทน (เหมือนคอลัมน์ "ค่า Fact." ของระบบจริง)</p>
 
   <div class="navrow">
     <div class="right">
@@ -271,6 +327,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
   <div class="tabs keep" role="tablist">
     <button class="tab on" data-tab="p4" onclick="showTab('p4')">ปร.4 รายการ</button>
+    <button class="tab" data-tab="bd" onclick="showTab('bd')">Break Down</button>
     <button class="tab" data-tab="p5" onclick="showTab('p5')">ปร.5 สรุปค่างาน</button>
     <button class="tab" data-tab="p6" onclick="showTab('p6')">ปร.6 ยอดทั้งโครงการ</button>
     <span class="spacer"></span>
@@ -300,6 +357,32 @@ button:disabled{opacity:.45;cursor:not-allowed}
           </tr>
         </thead>
         <tbody id="p4Body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tabpane" id="out-bd">
+    <div class="doc-head">
+      <h3>รายละเอียด BREAK DOWN</h3>
+      <div class="doc-meta" id="o-bdmeta"></div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:5%">ลำดับ</th>
+            <th>รายการ</th>
+            <th style="width:7%">หน่วย</th>
+            <th class="r" style="width:7%">จำนวน</th>
+            <th class="r" style="width:9%">ค่าวัสดุ/หน่วย</th>
+            <th class="r" style="width:10%">ค่าวัสดุรวม</th>
+            <th class="r" style="width:7%">FACTOR</th>
+            <th class="r" style="width:9%">ค่าแรง/หน่วย</th>
+            <th class="r" style="width:10%">ค่าแรงรวม</th>
+            <th class="r" style="width:11%">ค่าทั้งสิ้น (หลังคูณ F)</th>
+          </tr>
+        </thead>
+        <tbody id="bdBody"></tbody>
       </table>
     </div>
   </div>
@@ -370,16 +453,77 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 </main>
 
-<script>
-const KEY = 'budgetPlanV2';
-const API_KEY = 'budgetApiUrl';
-const $ = id => document.getElementById(id);
-const FIELDS = ['type','name','code','fy','agency','place','budget','units','useF','pAdv','pGuar','pMlr','pVat','sgn1','sgn2','sgn3','sgn4'];
-let items = [];
-let currentStep = 1;
+<!-- ============ Modal: คลังสูตรคำนวณ ============ -->
+<div class="modal-bg noprint" id="formulaModal">
+  <div class="modal">
+    <button class="x" onclick="closeFormulaLib()">×</button>
+    <h2>เครื่องมือสร้างสูตรคำนวณต้นทุนต่อหน่วย</h2>
+    <p class="lead" style="margin-bottom:10px">ใช้สัญลักษณ์ตามบทที่ 7 ของคู่มือ: @ ตัวแปร, ! วัสดุ, !T วัสดุรวมขนส่ง, !{Key} วัสดุกำหนดคำเฉพาะ, $ ค่าดำเนินการ (OPC), ${Key} ค่าดำเนินการขนส่ง, # สูตรอ้างอิง/คำนวณ, #T สูตรรวมผลลัพธ์สุดท้าย (มีได้รายการละ 1 เดียว)</p>
 
-// ตาราง Factor F งานก่อสร้างอาคาร เงินล่วงหน้า 15% ประกันผลงาน 10% ดอกเบี้ย 6% VAT 7%
-// อ้างอิงหนังสือกรมบัญชีกลาง ที่ กค 0433.2/ว 481 ค่าระหว่างช่วงคำนวณด้วยการเทียบสัดส่วน
+    <div id="libView">
+      <div class="actions" style="margin-bottom:12px">
+        <button class="primary" onclick="newFormula()">+ Add New Formula</button>
+        <button onclick="cloudFormulaPullAll()">⇅ โหลดคลังสูตรจากคลาวด์</button>
+      </div>
+      <p class="smallnote" style="margin:-6px 0 10px">สูตรจะถูกบันทึกไว้ในเบราว์เซอร์นี้เสมอ ถ้าใส่ URL เว็บแอป (ช่องด้านล่างในขั้นที่ 3) ไว้แล้ว กด Save Content แต่ละสูตรจะซิงก์ขึ้นคลาวด์ให้ทั้งทีมใช้ร่วมกันด้วย</p>
+      <div class="tablewrap">
+        <table class="libtable">
+          <thead><tr><th style="width:8%">ID</th><th>Name</th><th style="width:34%">Actions</th></tr></thead>
+          <tbody id="formulaListBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="editView" style="display:none">
+      <div class="grid" style="margin-bottom:10px">
+        <label class="f">รายการงาน / ชื่อสูตร<input id="fName" type="text" placeholder="เช่น 4.4(3) Asphalt Concrete Binder Course"></label>
+        <label class="f">หมายเหตุ<input id="fNote" type="text" placeholder="ไม่บังคับ"></label>
+      </div>
+
+      <div id="fRows"></div>
+      <div class="actions">
+        <button onclick="addFormulaRow()">+ New Line</button>
+        <button onclick="generateReport()">Generate Report</button>
+        <button class="primary" onclick="saveFormulaContent()">Save Content</button>
+        <button class="ghost" onclick="clearFormulaEditor()">Clear</button>
+        <button class="ghost" onclick="backToLib()">Back to List</button>
+      </div>
+
+      <div id="fReport" style="margin-top:16px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Modal: ผูกสูตรกับรายการงาน ============ -->
+<div class="modal-bg noprint" id="linkModal">
+  <div class="modal" style="max-width:640px">
+    <button class="x" onclick="closeLinkModal()">×</button>
+    <h2>คำนวณราคาต่อหน่วยจากสูตร</h2>
+    <label class="f" style="margin-bottom:10px">เลือกสูตร<select id="linkFormulaSelect" onchange="renderLinkInputs()"></select></label>
+    <div id="linkInputs"></div>
+    <div class="actions">
+      <button class="primary" onclick="applyLinkedFormula()">คำนวณและนำไปใช้กับรายการนี้</button>
+      <button class="ghost" onclick="closeLinkModal()">ยกเลิก</button>
+    </div>
+    <div id="linkPreview" class="hint" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<script>
+const KEY = 'budgetPlanV3';
+const API_KEY = 'budgetApiUrl';
+const FORMULA_KEY = 'budgetFormulaLibV1';
+const $ = id => document.getElementById(id);
+const FIELDS = ['type','name','code','fy','agency','place','roadNo','roadSection','kmFrom','kmTo',
+  'budget','units','fCategory','useF','pAdv','pGuar','pMlr','pVat','pOnce','adjustManual',
+  'sgn1','sgn2','sgn3','sgn4'];
+let items = [];
+let formulas = [];
+let currentStep = 1;
+let editingFormulaId = null;
+let linkingItemIndex = null;
+
+/* ---------- Factor F: ตาราง ว481 (งานอาคาร) ---------- */
 const FTABLE = [
   [0,1.3052],[500000,1.3052],[1000000,1.3028],[2000000,1.3011],[5000000,1.2972],
   [10000000,1.2909],[15000000,1.2484],[20000000,1.2482],[25000000,1.2212],[30000000,1.2127],
@@ -396,7 +540,40 @@ function fromTable(a){
   return FTABLE[FTABLE.length - 1][1];
 }
 
-/* ---------- ตัวช่วย ---------- */
+/* ---------- คีย์พิเศษของวัสดุ / OPC ตามบทที่ 7.4 ---------- */
+const MATKEYS = {
+  WT1:'ไม้แบบสำหรับงานทั่วไป', WT2:'ไม้แบบสำหรับงานอย่างง่าย',
+  WT3:'ไม้แบบสำหรับงานสะพานและงานท่อเหลี่ยม', SAND:'ทรายหยาบบดอัดแน่น',
+  RCSA:'คอนกรีตผสมเสร็จ Class Special A', RCA:'คอนกรีตผสมเสร็จ Class A',
+  RCB:'คอนกรีตผสมเสร็จ Class B', RCC:'คอนกรีตผสมเสร็จ Class C',
+  RCD:'คอนกรีตผสมเสร็จ Class D', RCE:'คอนกรีตผสมเสร็จ Class E',
+  RCL136:'คอนกรีตผสมเสร็จ Class Lean 1:3:6', RCM13:'คอนกรีตผสมเสร็จ Class Mortar 1:3',
+  RCAB:'คอนกรีตผสมเสร็จ Class A&B สะพาน', RCAO:'คอนกรีตผสมเสร็จ Class A&B โครงสร้างอื่นๆ',
+  CSA:'คอนกรีตผสมเอง Class Special A', CA:'คอนกรีตผสมเอง Class A',
+  CB:'คอนกรีตผสมเอง Class B', CC:'คอนกรีตผสมเอง Class C',
+  CD:'คอนกรีตผสมเอง Class D', CE:'คอนกรีตผสมเอง Class E',
+  CL136:'คอนกรีตผสมเอง Class Lean 1:3:6', CM13:'คอนกรีตผสมเอง Class Mortar 1:3',
+  CAB:'คอนกรีตผสมเอง Class A&B สะพาน', CAO:'คอนกรีตผสมเอง Class A&B โครงสร้างอื่นๆ'
+};
+const OPCKEYS = {
+  TC6V:'ค่าขนส่งรถบรรทุก 6 ล้อ (บาท/ลบ.ม.)', TC6W:'ค่าขนส่งรถบรรทุก 6 ล้อ (บาท/ตัน)',
+  TC10V:'ค่าขนส่งรถบรรทุก 10 ล้อ (บาท/ลบ.ม.)', TC10W:'ค่าขนส่งรถบรรทุก 10 ล้อ (บาท/ตัน)',
+  TC10TV:'ค่าขนส่งรถบรรทุก 10 ล้อและรถลากพ่วง (บาท/ลบ.ม.)', TC10TW:'ค่าขนส่งรถบรรทุก 10 ล้อและรถลากพ่วง (บาท/ตัน)'
+};
+const ROW_TYPES = [
+  {v:'text', label:'ข้อความ (Text)'},
+  {v:'var', label:'@ ตัวแปร (Variable)'},
+  {v:'mat', label:'! วัสดุ (Material)'},
+  {v:'matT', label:'!T วัสดุรวมค่าขนส่ง'},
+  {v:'matKey', label:'!{Key} วัสดุกำหนดคำเฉพาะ'},
+  {v:'opc', label:'$ ค่าดำเนินการ (OPC)'},
+  {v:'opcKey', label:'${Key} ค่าดำเนินการขนส่ง'},
+  {v:'formula', label:'# สูตรอ้างอิง/คำนวณ'},
+  {v:'total', label:'#T สูตรรวมผลลัพธ์ (TOTAL)'}
+];
+const PREFIX = {var:'V', mat:'M', matT:'MT', matKey:'M', opc:'O', opcKey:'O', formula:'F', total:'F'};
+
+/* ---------- ตัวช่วยทั่วไป ---------- */
 const fmt = n => (Number(n) || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 const num = v => { const x = parseFloat(v); return isFinite(x) ? x : 0; };
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -443,23 +620,27 @@ function go(n){
 
 /* ---------- อ่านและบันทึก ---------- */
 function readParams(){
+  const kf = num($('kmFrom').value), kt = num($('kmTo').value);
   return {
     type: $('type').value,
-    name: $('name').value.trim(),
-    code: $('code').value.trim(),
-    fy: $('fy').value.trim(),
-    agency: $('agency').value.trim(),
-    place: $('place').value.trim(),
+    name: $('name').value.trim(), code: $('code').value.trim(), fy: $('fy').value.trim(),
+    agency: $('agency').value.trim(), place: $('place').value.trim(),
+    roadNo: $('roadNo').value.trim(), roadSection: $('roadSection').value.trim(),
+    kmFrom: $('kmFrom').value, kmTo: $('kmTo').value,
+    distanceKm: ($('kmFrom').value && $('kmTo').value) ? Math.abs(kt - kf) : null,
     budget: num($('budget').value),
     units: Math.max(1, Math.floor(num($('units').value)) || 1),
+    fCategory: $('fCategory').value,
     useF: $('useF').checked,
-    pAdv: $('pAdv').value, pGuar: $('pGuar').value, pMlr: $('pMlr').value, pVat: $('pVat').value,
+    pAdv: $('pAdv').value, pGuar: $('pGuar').value, pMlr: $('pMlr').value, pVat: $('pVat').value, pOnce: $('pOnce').value,
+    adjustManual: num($('adjustManual').value),
     sgn: [$('sgn1').value, $('sgn2').value, $('sgn3').value, $('sgn4').value],
   };
 }
 function snapshot(){
   const data = {};
-  FIELDS.forEach(f => data[f] = ($(f).type === 'checkbox') ? $(f).checked : $(f).value);
+  FIELDS.forEach(f => { if (f === 'sgn1' || f==='sgn2' || f==='sgn3' || f==='sgn4') return; data[f] = ($(f).type === 'checkbox') ? $(f).checked : $(f).value; });
+  data.sgn1 = $('sgn1').value; data.sgn2 = $('sgn2').value; data.sgn3 = $('sgn3').value; data.sgn4 = $('sgn4').value;
   data.items = items;
   return data;
 }
@@ -471,7 +652,7 @@ function syncType(){
   document.querySelectorAll('input[name=typeR]').forEach(r => r.checked = (r.value === t));
 }
 function applyData(d){
-  FIELDS.forEach(f => { if (d[f] !== undefined) { if ($(f).type === 'checkbox') $(f).checked = d[f]; else $(f).value = d[f]; } });
+  FIELDS.forEach(f => { if (d[f] !== undefined && $(f)) { if ($(f).type === 'checkbox') $(f).checked = d[f]; else $(f).value = d[f]; } });
   items = Array.isArray(d.items) ? d.items : [];
   syncType();
   renderEditor();
@@ -481,24 +662,35 @@ function load(){
     const d = JSON.parse(localStorage.getItem(KEY) || 'null');
     if (d) applyData(d);
   } catch (e) {}
+  try {
+    const f = JSON.parse(localStorage.getItem(FORMULA_KEY) || 'null');
+    if (Array.isArray(f)) formulas = f;
+  } catch (e) {}
+}
+function saveFormulasToStorage(){
+  try { localStorage.setItem(FORMULA_KEY, JSON.stringify(formulas)); } catch (e) {}
 }
 
 /* ---------- ตารางรายการ ---------- */
 function renderEditor(){
   const body = $('itemBody');
   if (!items.length) {
-    body.innerHTML = `<tr><td colspan="8" class="empty">ยังไม่มีรายการงาน<br><button class="primary nav" style="margin-top:12px" onclick="addItem()">เพิ่มรายการแรก</button></td></tr>`;
+    body.innerHTML = `<tr><td colspan="9" class="empty">ยังไม่มีรายการงาน<br><button class="primary nav" style="margin-top:12px" onclick="addItem()">เพิ่มรายการแรก</button></td></tr>`;
   } else {
     body.innerHTML = items.map((it, i) => `
       <tr>
         <td><input list="groupList" placeholder="เช่น งานพื้น" value="${esc(it.group)}" oninput="upd(${i},'group',this.value)"></td>
-        <td><input placeholder="ชื่อรายการ" value="${esc(it.name)}" oninput="upd(${i},'name',this.value)"></td>
+        <td><input placeholder="ชื่อรายการ" value="${esc(it.name)}" oninput="upd(${i},'name',this.value)">${it.formulaId ? `<div class="smallnote">ƒ ใช้สูตร: ${esc(formulaName(it.formulaId))}</div>` : ''}</td>
         <td><input list="unitList" placeholder="หน่วย" value="${esc(it.unit)}" oninput="upd(${i},'unit',this.value)"></td>
         <td><input type="number" step="any" class="num" value="${it.qty}" onfocus="this.select()" oninput="upd(${i},'qty',this.value)"></td>
         <td><input type="number" step="any" value="${it.mat}" onfocus="this.select()" oninput="upd(${i},'mat',this.value)"></td>
         <td><input type="number" step="any" value="${it.lab}" onfocus="this.select()" onkeydown="rowKey(event,${i})" oninput="upd(${i},'lab',this.value)"></td>
-        <td class="num" id="rowtot${i}">${fmt((it.qty * it.mat) + (it.qty * it.lab))}</td>
-        <td><button class="del" title="ลบแถวนี้" onclick="delItem(${i})">×</button></td>
+        <td><input type="number" step="any" placeholder="auto" value="${it.factorOverride ?? ''}" onfocus="this.select()" oninput="updF(${i},this.value)"></td>
+        <td class="num" id="rowtot${i}">${fmt(rowTotal(it))}</td>
+        <td>
+          <button class="sm" title="คำนวณจากสูตร" onclick="openLinkModal(${i})">ƒ</button>
+          <button class="del" title="ลบแถวนี้" onclick="delItem(${i})">×</button>
+        </td>
       </tr>`).join('');
   }
   refreshGroupList();
@@ -509,7 +701,7 @@ function refreshGroupList(){
   $('itemCount').textContent = items.length ? `${items.length} รายการ, ${groups.length} หมวด` : '';
 }
 function addItem(){
-  items.push({group: '', name: '', unit: '', qty: 1, mat: 0, lab: 0, note: ''});
+  items.push({group: '', name: '', unit: '', qty: 1, mat: 0, lab: 0, factorOverride: null, formulaId: null});
   renderEditor(); refresh();
   const first = document.querySelector('#itemBody tr:last-child input');
   if (first) first.focus();
@@ -523,56 +715,94 @@ function delItem(i){
 }
 function upd(i, key, val){
   items[i][key] = (key === 'qty' || key === 'mat' || key === 'lab') ? num(val) : val;
-  const it = items[i];
   const t = $('rowtot' + i);
-  if (t) t.textContent = fmt(it.qty * it.mat + it.qty * it.lab);
+  if (t) t.textContent = fmt(rowTotal(items[i]));
   if (key === 'group') refreshGroupList();
+  refresh();
+}
+function updF(i, val){
+  items[i].factorOverride = val === '' ? null : num(val);
+  const t = $('rowtot' + i);
+  if (t) t.textContent = fmt(rowTotal(items[i]));
   refresh();
 }
 function clearAll(){
   if (!confirm('ล้างข้อมูลทั้งหมดในหน้านี้?')) return;
   items = [];
-  FIELDS.forEach(f => { if ($(f).type === 'checkbox') $(f).checked = true; else $(f).value = ''; });
+  FIELDS.forEach(f => { if (!$(f)) return; if ($(f).type === 'checkbox') $(f).checked = true; else $(f).value = ''; });
   $('type').value = 'construction'; syncType();
   $('units').value = '1'; $('budget').value = '0';
-  $('pAdv').value = '15'; $('pGuar').value = '10'; $('pMlr').value = '6'; $('pVat').value = '7';
+  $('fCategory').value = 'building';
+  $('pAdv').value = '15'; $('pGuar').value = '10'; $('pMlr').value = '6'; $('pVat').value = '7'; $('pOnce').value = '100';
+  $('adjustManual').value = '0';
   renderEditor(); refresh(); go(1);
 }
 function loadSample(){
   if (items.length && !confirm('จะแทนที่ข้อมูลที่กรอกไว้ด้วยข้อมูลตัวอย่างใช่หรือไม่?')) return;
   applyData({
-    type: 'construction', name: 'งานตัวอย่าง ปรับปรุงอาคารที่พัก', code: '00000', fy: '2569',
-    agency: 'หน่วยงานตัวอย่าง', place: 'สถานที่ตัวอย่าง', budget: 0, units: 5, useF: true,
-    pAdv: '15', pGuar: '10', pMlr: '6', pVat: '7', sgn1: '', sgn2: '', sgn3: '', sgn4: '',
+    type: 'construction', name: 'งานปรับปรุงผิวทางแอสฟัลต์คอนกรีต (ตัวอย่าง)', code: '22300', fy: '2569',
+    agency: 'แขวงทางหลวงตัวอย่าง', place: 'อำเภอเมือง จังหวัดตัวอย่าง',
+    roadNo: 'ทล.1374', roadSection: 'ตอน 0101', kmFrom: '0.263', kmTo: '9.029',
+    budget: 15000000, units: 1, fCategory: 'road', useF: true,
+    pAdv: '15', pGuar: '10', pMlr: '6', pVat: '7', pOnce: '100', adjustManual: '0',
+    sgn1: '', sgn2: '', sgn3: '', sgn4: '',
     items: [
-      {group: 'งานพื้น', name: 'กระเบื้องปูพื้น 60x60 ซม.', unit: 'ตร.ม.', qty: 20, mat: 250, lab: 80, note: ''},
-      {group: 'งานพื้น', name: 'ปูนกาวติดกระเบื้อง', unit: 'ถุง', qty: 5, mat: 120, lab: 0, note: ''},
-      {group: 'งานสี', name: 'สีรองพื้นภายใน', unit: 'ถัง', qty: 2, mat: 900, lab: 300, note: ''}
+      {group: 'งานผิวทาง', name: 'TACK COAT', unit: 'ตร.ม.', qty: 4595, mat: 10.32, lab: 2.00, factorOverride: 1.2995, formulaId: null},
+      {group: 'งานผิวทาง', name: 'ASPHALT CONCRETE WEARING COURSE', unit: 'ตร.ม.', qty: 4595, mat: 200.00, lab: 34.57, factorOverride: 1.2995, formulaId: null},
+      {group: 'งานผิวทาง', name: 'THERMOPLASTIC PAINT (YELLOW & WHITE)', unit: 'ตร.ม.', qty: 1443, mat: 250.00, lab: 38.80, factorOverride: null, formulaId: null}
     ]
   });
   refresh();
 }
 
+/* ---------- Factor F ต่อแถว ---------- */
+function rowFactor(it, ctx){
+  if (it.factorOverride !== null && it.factorOverride !== undefined && it.factorOverride !== '') return num(it.factorOverride);
+  if (!ctx.isC || !ctx.useF) return 1;
+  if (ctx.fCategory === 'building') return fromTable(ctx.baseForTable);
+  return ctx.globalF; // งานทาง: ใช้ค่า F ตั้งต้นของทั้งโครงการ (ผู้ใช้กำหนดเอง)
+}
+function rowTotal(it){
+  const p = readParams();
+  const ctx = factorContext(p);
+  const f = rowFactor(it, ctx);
+  return (it.qty * it.mat + it.qty * it.lab) * f;
+}
+function factorContext(p){
+  const isC = p.type === 'construction';
+  // ประมาณการค่างานต้นทุนรวมคร่าวๆ เพื่อใช้เปิดตาราง ว481 (งานอาคาร)
+  const roughBase = items.reduce((s, it) => s + it.qty * it.mat + it.qty * it.lab, 0) * p.units;
+  const globalF = (p.fCategory === 'building') ? fromTable(roughBase) : 1; // งานทางให้ผู้ใช้กำหนดเองด้านล่าง
+  return {isC, useF: p.useF, fCategory: p.fCategory, baseForTable: roughBase, globalF: isRoadGlobalF(p)};
+}
+let _roadGlobalF = 1;
+function isRoadGlobalF(p){ return (p.fCategory === 'road') ? num($('factorF').dataset.roadf || 1) : fromTable(0); }
+
 /* ---------- คำนวณ ---------- */
 function compute(p){
   const groups = [];
   const gmap = {};
+  const ctx = factorContext(p);
   items.forEach((it, idx) => {
     const g = (it.group || '').trim() || 'ไม่ระบุหมวด';
-    if (!gmap[g]) { gmap[g] = {name: g, rows: [], mat: 0, lab: 0}; groups.push(gmap[g]); }
+    if (!gmap[g]) { gmap[g] = {name: g, rows: [], mat: 0, lab: 0, tot: 0}; groups.push(gmap[g]); }
     const mat = it.qty * it.mat, lab = it.qty * it.lab;
-    gmap[g].rows.push({...it, idx, matTot: mat, labTot: lab, tot: mat + lab});
-    gmap[g].mat += mat; gmap[g].lab += lab;
+    const f = rowFactor(it, ctx);
+    const totF = (mat + lab) * f;
+    gmap[g].rows.push({...it, idx, matTot: mat, labTot: lab, tot: mat + lab, f, totF});
+    gmap[g].mat += mat; gmap[g].lab += lab; gmap[g].tot += totF;
   });
   const unitMat = groups.reduce((s, g) => s + g.mat, 0);
   const unitLab = groups.reduce((s, g) => s + g.lab, 0);
   const unitCost = unitMat + unitLab;
   const baseCost = unitCost * p.units;
+  const sumAfterF = groups.reduce((s, g) => s + g.tot, 0) * p.units;
   const isC = p.type === 'construction';
-  const F = (isC && p.useF) ? fromTable(baseCost) : 1;
-  const constructionCost = baseCost * F;
-  const finalTotal = p.budget > 0 ? p.budget : constructionCost;
-  const adjust = p.budget > 0 ? p.budget - constructionCost : 0;
+  const F = isC && p.useF ? (p.fCategory === 'building' ? fromTable(baseCost) : num($('factorF').dataset.roadf || 1)) : 1;
+  const constructionCost = isC && p.useF ? sumAfterF : baseCost;
+  const beforeAdjust = p.budget > 0 ? p.budget : constructionCost;
+  const finalTotal = beforeAdjust + (p.adjustManual || 0);
+  const adjust = finalTotal - constructionCost;
   return {groups, unitMat, unitLab, unitCost, baseCost, F, constructionCost, finalTotal, adjust, isC};
 }
 
@@ -580,10 +810,12 @@ function compute(p){
 function renderOutput(p, c){
   $('o-title').textContent = c.isC ? 'แผนรายประมาณการ งานก่อสร้าง' : 'แผนรายประมาณการ งานกิจกรรม';
   $('o-sub').textContent = [p.name, p.code ? 'รหัสงาน ' + p.code : ''].filter(Boolean).join(' ') || 'ยังไม่ได้ระบุชื่องาน';
+  const roadLine = p.roadNo ? `${p.roadNo}${p.roadSection ? ' ' + p.roadSection : ''}${(p.kmFrom && p.kmTo) ? ` กม.${p.kmFrom}-กม.${p.kmTo} (ระยะทาง ${fmt(p.distanceKm).replace(/\.00$/,'')} กม.)` : ''}` : '';
   $('o-meta').innerHTML = [
     p.fy ? `ปีงบประมาณ ${esc(p.fy)}` : '',
     p.agency ? `หน่วยงาน ${esc(p.agency)}` : '',
     p.place ? `สถานที่ ${esc(p.place)}` : '',
+    roadLine ? esc(roadLine) : '',
     `จำนวน ${p.units} หน่วย`
   ].filter(Boolean).join(' | ');
 
@@ -612,11 +844,30 @@ function renderOutput(p, c){
     <td class="num">${fmt(c.baseCost)}</td></tr>`;
   $('p4Body').innerHTML = rows || `<tr><td colspan="9" class="empty">ยังไม่มีรายการ กลับไปขั้นที่ 2 เพื่อเพิ่มรายการงาน</td></tr>`;
 
+  // ----- Break Down -----
+  $('o-bdmeta').innerHTML = $('o-sub').textContent + (roadLine ? ' | ' + esc(roadLine) : '');
+  let bdRows = '', bn = 0, bdMat = 0, bdLab = 0, bdTot = 0;
+  c.groups.forEach(g => g.rows.forEach(r => {
+    bn++; bdMat += r.matTot; bdLab += r.labTot; bdTot += r.totF;
+    bdRows += `<tr>
+      <td class="num">${bn}</td><td>${esc(r.name)}</td><td>${esc(r.unit)}</td>
+      <td class="num">${fmt(r.qty)}</td>
+      <td class="num">${fmt(r.mat)}</td><td class="num">${fmt(r.matTot)}</td>
+      <td class="num">${r.f.toFixed(4)}</td>
+      <td class="num">${fmt(r.lab)}</td><td class="num">${fmt(r.labTot)}</td>
+      <td class="num">${fmt(r.totF)}</td></tr>`;
+  }));
+  bdRows += `<tr class="total"><td colspan="5" style="text-align:right">รวม</td>
+    <td class="num">${fmt(bdMat)}</td><td></td><td class="num">${fmt(bdLab)}</td><td></td><td class="num">${fmt(bdTot * p.units)}</td></tr>`;
+  $('bdBody').innerHTML = bdRows || `<tr><td colspan="10" class="empty">ยังไม่มีรายการ</td></tr>`;
+
   const p5 = [
-    ['ค่างานต้นทุนรวม', fmt(c.baseCost)],
-    ['ค่า F', c.isC && p.useF ? c.F.toFixed(4) : 'ไม่ใช้'],
-    ['ค่าก่อสร้าง (ค่างานต้นทุน × F)', fmt(c.constructionCost)],
-    ['ปรับยอด (วงเงิน − ค่าก่อสร้าง)', p.budget > 0 ? fmt(c.adjust) : '-'],
+    ['ค่างานต้นทุนรวม (ก่อนคูณ F)', fmt(c.baseCost)],
+    ['Factor F ตั้งต้นของโครงการ', c.isC && p.useF ? c.F.toFixed(4) : 'ไม่ใช้'],
+    ['หมวด Factor F', p.fCategory === 'building' ? 'งานอาคาร (ตาราง ว481)' : 'งานทาง (กำหนดเอง)'],
+    ['ค่าก่อสร้าง (รวม F รายรายการแล้ว)', fmt(c.constructionCost)],
+    ['ปรับเพิ่ม/ลดยอดเอง (บาท)', fmt(p.adjustManual || 0)],
+    ['ส่วนต่าง (วงเงิน+ปรับยอด − ค่าก่อสร้าง)', fmt(c.adjust)],
     ['รวมค่าก่อสร้างทั้งสิ้น', fmt(c.finalTotal)],
   ];
   if (p.units > 1) p5.push(['เฉลี่ยต่อหน่วย', fmt(c.finalTotal / p.units)]);
@@ -624,19 +875,20 @@ function renderOutput(p, c){
     `<tr class="${i === p5.length - 1 ? 'total' : ''}"><td>${a}</td><td class="num money" style="width:32%">${b}</td></tr>`).join('');
 
   $('p5Status').innerHTML = p.budget > 0
-    ? (Math.abs(c.adjust) < 0.005
+    ? (Math.abs(c.finalTotal - p.budget) < 0.005
         ? `<span class="good">ค่าก่อสร้างตรงกับวงเงินพอดี</span>`
-        : `<span class="${c.adjust >= 0 ? 'good' : 'bad'}">${c.adjust >= 0 ? 'วงเงินเหลือ' : 'ค่าก่อสร้างเกินวงเงิน'} ${fmt(Math.abs(c.adjust))} บาท</span>`)
-    : `<span style="color:var(--ink2)">ยังไม่ได้ใส่วงเงิน ระบบจะใช้ค่าก่อสร้างตามสูตรเป็นยอดรวม</span>`;
+        : `<span class="${c.adjust >= 0 ? 'good' : 'bad'}">ส่วนต่างจากค่าก่อสร้างจริง ${fmt(Math.abs(c.adjust))} บาท</span>`)
+    : `<span style="color:var(--ink2)">ยังไม่ได้ใส่วงเงิน ระบบจะใช้ค่าก่อสร้างตามสูตร + ค่าที่ปรับเองเป็นยอดรวม</span>`;
   $('o-p5meta').innerHTML = [p.name, p.code ? 'รหัสงาน ' + esc(p.code) : ''].filter(Boolean).join(' | ');
 
   $('o-p6meta').innerHTML = [
     p.name ? `ชื่อโครงการ ${esc(p.name)}${p.code ? ' รหัสงาน ' + esc(p.code) : ''}` : '',
     p.agency ? `หน่วยงานเจ้าของโครงการ ${esc(p.agency)}` : '',
+    roadLine ? esc(roadLine) : '',
   ].filter(Boolean).join('<br>');
   $('p6Body').innerHTML = `
     <tr><td>รวมค่าก่อสร้างทั้งโครงการ</td><td class="num money" style="width:32%">${fmt(c.constructionCost)}</td></tr>
-    <tr><td>ปรับลด / ปรับเพิ่ม</td><td class="num money">${p.budget > 0 ? fmt(c.adjust) : '-'}</td></tr>
+    <tr><td>ปรับลด / ปรับเพิ่ม</td><td class="num money">${fmt(c.adjust)}</td></tr>
     <tr class="total"><td>รวมค่าก่อสร้างทั้งสิ้น</td><td class="num money">${fmt(c.finalTotal)}</td></tr>`;
   $('o-baht').innerHTML = `ตัวอักษร: (${bahtText(c.finalTotal)})`;
 
@@ -646,8 +898,17 @@ function renderOutput(p, c){
 function refresh(){
   const p = readParams();
   save();
+  $('distanceKm').value = p.distanceKm !== null ? p.distanceKm.toFixed(3) : '';
+  const roughBase = items.reduce((s, it) => s + it.qty * it.mat + it.qty * it.lab, 0) * p.units;
+  if (p.fCategory === 'building') {
+    $('factorF').value = (p.type === 'construction' && p.useF) ? fromTable(roughBase).toFixed(4) : 'ไม่ใช้';
+    $('factorF').dataset.roadf = '';
+  } else {
+    if (!$('factorF').dataset.roadf) $('factorF').dataset.roadf = '1.0000';
+    $('factorF').value = (p.type === 'construction' && p.useF) ? 'กำหนดเอง: ' + $('factorF').dataset.roadf : 'ไม่ใช้';
+    $('factorF').oncontextmenu = null;
+  }
   const c = compute(p);
-  $('factorF').value = (p.type === 'construction' && p.useF) ? c.F.toFixed(4) : 'ไม่ใช้';
   $('plate').textContent = fmt(c.finalTotal);
   renderOutput(p, c);
 }
@@ -665,25 +926,354 @@ function exportCSV(){
   lines.push(['แผนรายประมาณการ', p.name, p.code].map(q).join(','));
   lines.push(['ปีงบประมาณ', p.fy, 'หน่วยงาน', p.agency].map(q).join(','));
   lines.push('');
-  lines.push(['ลำดับ','หมวด','รายการ','หน่วย','จำนวน','วัสดุ/หน่วย','ค่าวัสดุ','แรงงาน/หน่วย','ค่าแรง','รวม'].map(q).join(','));
+  lines.push(['ลำดับ','หมวด','รายการ','หน่วย','จำนวน','วัสดุ/หน่วย','ค่าวัสดุ','แรงงาน/หน่วย','ค่าแรง','Factor','รวมหลัง F'].map(q).join(','));
   let n = 0;
   c.groups.forEach(g => g.rows.forEach(r => {
     n++;
-    lines.push([n, g.name, r.name, r.unit, r.qty, r.mat, r.matTot, r.lab, r.labTot, r.tot].map(q).join(','));
+    lines.push([n, g.name, r.name, r.unit, r.qty, r.mat, r.matTot, r.lab, r.labTot, r.f, r.totF].map(q).join(','));
   }));
-  lines.push(['','','รวมต่อ 1 หน่วย','','','',c.unitMat,'',c.unitLab,c.unitCost].map(q).join(','));
+  lines.push(['','','รวมต่อ 1 หน่วย','','','',c.unitMat,'',c.unitLab,'',''].map(q).join(','));
   lines.push('');
-  lines.push(['ค่างานต้นทุนรวม', c.baseCost].map(q).join(','));
-  lines.push(['ค่า F', c.F].map(q).join(','));
+  lines.push(['ค่างานต้นทุนรวม (ก่อนคูณF)', c.baseCost].map(q).join(','));
+  lines.push(['Factor F ตั้งต้น', c.F].map(q).join(','));
   lines.push(['ค่าก่อสร้าง', c.constructionCost].map(q).join(','));
   lines.push(['ปรับยอด', c.adjust].map(q).join(','));
   lines.push(['รวมค่าก่อสร้างทั้งสิ้น', c.finalTotal].map(q).join(','));
-  const blob = new Blob(['﻿' + lines.join('\r\n')], {type: 'text/csv;charset=utf-8'});
+  const blob = new Blob(['\uFEFF' + lines.join('\r\n')], {type: 'text/csv;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = `แผนรายประมาณการ_${p.code || 'งาน'}.csv`;
   a.click();
 }
+
+/* ======================================================================
+   เครื่องมือสร้างสูตรคำนวณต้นทุนต่อหน่วย (บทที่ 7 ของคู่มือ)
+   แต่ละ "บรรทัด (row)" สร้างตัวแปรได้ 1 ตัว เพื่อให้กรอกง่ายกว่าการพิมพ์สัญลักษณ์สดๆ
+   แต่ยังใช้ชื่อ Prefix / ความหมายคำสั่งตรงตามคู่มือทุกประการ (@ ! !T !{Key} $ ${Key} # #T)
+   ====================================================================== */
+let fRowsDraft = [];
+
+function formulaName(id){
+  const f = formulas.find(x => x.id === id);
+  return f ? f.name : '';
+}
+function blankRow(type){ return {type: type || 'text', label: '', value: 0, key: '', expr: ''}; }
+
+function openFormulaLib(){
+  renderFormulaList();
+  $('libView').style.display = '';
+  $('editView').style.display = 'none';
+  $('formulaModal').classList.add('on');
+}
+function closeFormulaLib(){ $('formulaModal').classList.remove('on'); }
+function backToLib(){ $('libView').style.display = ''; $('editView').style.display = 'none'; renderFormulaList(); }
+
+function renderFormulaList(){
+  $('formulaListBody').innerHTML = formulas.length ? formulas.map(f => `
+    <tr>
+      <td>${esc(f.id)}</td>
+      <td>${esc(f.name)}</td>
+      <td>
+        <button class="sm" onclick="viewFormula('${f.id}')">View</button>
+        <button class="sm" onclick="reportFormula('${f.id}')">Report</button>
+        <button class="sm" onclick="editFormula('${f.id}')">Edit</button>
+        <button class="sm" onclick="copyFormula('${f.id}')">Copy</button>
+        <button class="sm" onclick="deleteFormula('${f.id}')" style="color:var(--bad);border-color:var(--bad)">Delete</button>
+      </td>
+    </tr>`).join('') : `<tr><td colspan="3" class="empty">ยังไม่มีสูตรในคลัง กด "Add New Formula" เพื่อเริ่มสร้าง</td></tr>`;
+}
+
+function newFormula(){
+  editingFormulaId = null;
+  $('fName').value = ''; $('fNote').value = '';
+  fRowsDraft = [blankRow('var'), blankRow('total')];
+  $('libView').style.display = 'none'; $('editView').style.display = '';
+  $('fReport').innerHTML = '';
+  renderFormulaRows();
+}
+function editFormula(id){
+  const f = formulas.find(x => x.id === id);
+  if (!f) return;
+  editingFormulaId = id;
+  $('fName').value = f.name; $('fNote').value = f.note || '';
+  fRowsDraft = JSON.parse(JSON.stringify(f.rows));
+  $('libView').style.display = 'none'; $('editView').style.display = '';
+  $('fReport').innerHTML = '';
+  renderFormulaRows();
+}
+function copyFormula(id){
+  const f = formulas.find(x => x.id === id);
+  if (!f) return;
+  const copy = JSON.parse(JSON.stringify(f));
+  copy.id = 'F' + Date.now();
+  copy.name = 'Copy of ' + f.name;
+  formulas.unshift(copy);
+  saveFormulasToStorage();
+  renderFormulaList();
+}
+function deleteFormula(id){
+  if (!confirm('ลบสูตรนี้ออกจากคลังหรือไม่?')) return;
+  formulas = formulas.filter(x => x.id !== id);
+  saveFormulasToStorage();
+  const u = (document.getElementById('apiUrl') || {}).value;
+  if (u) fetch(u.trim(), {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({action:'formulaDelete', id})}).catch(()=>{});
+  renderFormulaList();
+}
+function viewFormula(id){ editFormula(id); document.querySelectorAll('#fRows input,#fRows select').forEach(e => e.disabled = true); }
+function reportFormula(id){ editFormula(id); document.querySelectorAll('#fRows input,#fRows select').forEach(e => e.disabled = true); generateReport(); }
+
+function addFormulaRow(type){
+  fRowsDraft.push(blankRow(type || 'text'));
+  renderFormulaRows();
+}
+function delFormulaRow(i){
+  fRowsDraft.splice(i, 1);
+  renderFormulaRows();
+}
+function setFRow(i, key, val){
+  fRowsDraft[i][key] = val;
+  if (key === 'type') renderFormulaRows();
+}
+function varNameFor(i){
+  const row = fRowsDraft[i];
+  const prefix = PREFIX[row.type] || '';
+  if (!prefix) return '';
+  return `${prefix}${i + 1}A`;
+}
+function renderFormulaRows(){
+  $('fRows').innerHTML = fRowsDraft.map((row, i) => {
+    const vn = varNameFor(i);
+    const typeSel = `<select onchange="setFRow(${i},'type',this.value)">
+      ${ROW_TYPES.map(t => `<option value="${t.v}" ${row.type===t.v?'selected':''}>${t.label}</option>`).join('')}
+    </select>`;
+    let mid = '';
+    if (row.type === 'text') {
+      mid = `<input placeholder="ข้อความ" value="${esc(row.label)}" oninput="setFRow(${i},'label',this.value)" style="grid-column:span 3">`;
+    } else if (row.type === 'var') {
+      mid = `<input placeholder="ชื่อ/คำอธิบายตัวแปร" value="${esc(row.label)}" oninput="setFRow(${i},'label',this.value)">
+        <input type="number" step="any" placeholder="ค่า" value="${row.value}" onfocus="this.select()" oninput="setFRow(${i},'value',this.valueAsNumber||0)">
+        <span></span>`;
+    } else if (row.type === 'mat' || row.type === 'matT') {
+      mid = `<input placeholder="ชื่อวัสดุ" value="${esc(row.label)}" oninput="setFRow(${i},'label',this.value)">
+        <input type="number" step="any" placeholder="ราคา/หน่วย" value="${row.value}" onfocus="this.select()" oninput="setFRow(${i},'value',this.valueAsNumber||0)">
+        <span class="smallnote">${row.type==='matT'?'รวมค่าขนส่งแล้ว':'ไม่รวมค่าขนส่ง'}</span>`;
+    } else if (row.type === 'matKey') {
+      mid = `<select onchange="setFRow(${i},'key',this.value)">
+          <option value="">-- เลือก Key วัสดุ --</option>
+          ${Object.keys(MATKEYS).map(k => `<option value="${k}" ${row.key===k?'selected':''}>!${k} — ${MATKEYS[k]}</option>`).join('')}
+        </select>
+        <input type="number" step="any" placeholder="ราคา/หน่วย" value="${row.value}" onfocus="this.select()" oninput="setFRow(${i},'value',this.valueAsNumber||0)">
+        <span></span>`;
+    } else if (row.type === 'opc') {
+      mid = `<input placeholder="รหัส/ชื่อค่าดำเนินการ" value="${esc(row.label)}" oninput="setFRow(${i},'label',this.value)">
+        <input type="number" step="any" placeholder="ราคา" value="${row.value}" onfocus="this.select()" oninput="setFRow(${i},'value',this.valueAsNumber||0)">
+        <span></span>`;
+    } else if (row.type === 'opcKey') {
+      mid = `<select onchange="setFRow(${i},'key',this.value)">
+          <option value="">-- เลือก Key ค่าดำเนินการ --</option>
+          ${Object.keys(OPCKEYS).map(k => `<option value="${k}" ${row.key===k?'selected':''}>\${${k}} — ${OPCKEYS[k]}</option>`).join('')}
+        </select>
+        <input type="number" step="any" placeholder="ราคา" value="${row.value}" onfocus="this.select()" oninput="setFRow(${i},'value',this.valueAsNumber||0)">
+        <span></span>`;
+    } else { // formula / total
+      mid = `<input placeholder="เช่น V1A + O2A หรือ ( V1A - M3B ) * O4E" value="${esc(row.expr)}" oninput="setFRow(${i},'expr',this.value)" style="grid-column:span 3">`;
+    }
+    return `<div class="formrow">
+      ${typeSel}
+      <span class="vn">${vn || ''}${row.type==='total' ? ' TOTAL' : ''}</span>
+      ${mid}
+      <button class="del" onclick="delFormulaRow(${i})" title="ลบบรรทัด">🗑</button>
+    </div>`;
+  }).join('');
+}
+
+/* ---------- ตัวประมวลผลสูตรแบบปลอดภัย ---------- */
+function evalExpr(expr, scope){
+  if (!expr) return 0;
+  let s = ' ' + expr + ' ';
+  const names = Object.keys(scope).sort((a,b) => b.length - a.length);
+  names.forEach(n => { s = s.split(' ' + n + ' ').join(' ' + (scope[n] ?? 0) + ' '); });
+  s = s.replace(/[A-Za-z][A-Za-z0-9]*/g, '0'); // ตัวแปรที่เหลือ (ยังไม่รู้จัก) ให้เป็น 0 แทนการพัง
+  if (!/^[\s0-9+\-*/().]*$/.test(s)) return 0;
+  try { return Function('"use strict";return (' + s + ')')(); } catch (e) { return 0; }
+}
+function computeFormula(formula, overrides){
+  overrides = overrides || {};
+  const scope = {};
+  let matSum = 0, labSum = 0, total = null;
+  const lines = [];
+  formula.rows.forEach((row, i) => {
+    const vn = varNameFor2(row, i);
+    if (row.type === 'text') { lines.push({text: row.label}); return; }
+    if (row.type === 'var') {
+      const v = overrides[vn] !== undefined ? num(overrides[vn]) : num(row.value);
+      scope[vn] = v;
+      lines.push({vn, kind:'V', desc: row.label, value: v});
+    } else if (row.type === 'mat' || row.type === 'matT') {
+      const v = overrides[vn] !== undefined ? num(overrides[vn]) : num(row.value);
+      scope[vn] = v; matSum += v;
+      lines.push({vn, kind: row.type==='matT'?'MT':'M', desc: row.label, value: v});
+    } else if (row.type === 'matKey') {
+      const v = overrides[vn] !== undefined ? num(overrides[vn]) : num(row.value);
+      scope[vn] = v; matSum += v;
+      lines.push({vn, kind:'M', desc: '!' + row.key + ' ' + (MATKEYS[row.key]||''), value: v});
+    } else if (row.type === 'opc') {
+      const v = overrides[vn] !== undefined ? num(overrides[vn]) : num(row.value);
+      scope[vn] = v; labSum += v;
+      lines.push({vn, kind:'O', desc: row.label, value: v});
+    } else if (row.type === 'opcKey') {
+      const v = overrides[vn] !== undefined ? num(overrides[vn]) : num(row.value);
+      scope[vn] = v; labSum += v;
+      lines.push({vn, kind:'O', desc: '$' + row.key + ' ' + (OPCKEYS[row.key]||''), value: v});
+    } else if (row.type === 'formula') {
+      const v = evalExpr(row.expr, scope);
+      scope[vn] = v;
+      lines.push({vn, kind:'F', desc: row.expr, value: v});
+    } else if (row.type === 'total') {
+      const v = evalExpr(row.expr, scope);
+      scope[vn] = v; total = v;
+      lines.push({vn, kind:'T', desc: row.expr, value: v, total:true});
+    }
+  });
+  if (total === null) total = matSum + labSum;
+  return {lines, matSum, labSum, total, scope};
+}
+function varNameFor2(row, i){
+  const prefix = PREFIX[row.type] || '';
+  if (!prefix) return '';
+  return `${prefix}${i + 1}A`;
+}
+
+function generateReport(){
+  const draft = {rows: fRowsDraft};
+  const r = computeFormula(draft, {});
+  $('fReport').innerHTML = `<div class="sub-h">ผลการคำนวณ (Generate Report)</div>` +
+    r.lines.map(l => l.text !== undefined
+      ? `<div class="report-line">${esc(l.text)}</div>`
+      : `<div class="report-line ${l.total ? 'total' : ''}"><span class="tok ${l.kind}">${l.vn}</span>${esc(l.desc||'')} <span style="margin-left:auto">= ${fmt(l.value)}</span></div>`
+    ).join('') +
+    `<div class="report-line total"><span class="tok T">TOTAL</span>ราคาต่อหน่วยรวม<span style="margin-left:auto">= ${fmt(r.total)}</span></div>
+     <p class="smallnote" style="margin-top:8px">แยกเป็นค่าวัสดุโดยประมาณ ${fmt(r.matSum)} บาท และค่าดำเนินการ/ค่าแรงโดยประมาณ ${fmt(r.labSum)} บาท (ใช้ตอนนำไปเติมในตารางรายการงาน)</p>`;
+}
+
+function saveFormulaContent(){
+  const name = $('fName').value.trim();
+  if (!name) { alert('กรุณาตั้งชื่อสูตร (รายการงาน) ก่อนบันทึก'); return; }
+  const hasTotal = fRowsDraft.some(r => r.type === 'total');
+  if (!hasTotal) { alert('บรรทัดสุดท้ายต้องมีสูตรรวม #T (TOTAL) อย่างน้อย 1 บรรทัด'); return; }
+  let rec;
+  if (editingFormulaId) {
+    rec = formulas.find(x => x.id === editingFormulaId);
+    rec.name = name; rec.note = $('fNote').value.trim(); rec.rows = JSON.parse(JSON.stringify(fRowsDraft)); rec.updatedAt = now_();
+  } else {
+    rec = {id: 'F' + Date.now(), name, note: $('fNote').value.trim(), rows: JSON.parse(JSON.stringify(fRowsDraft)), updatedAt: now_()};
+    formulas.unshift(rec);
+  }
+  saveFormulasToStorage();
+  cloudFormulaPush(rec);
+  backToLib();
+}
+
+/* ---------- ซิงก์คลังสูตรขึ้น/ลงคลาวด์ (ใช้ร่วมกับ URL เว็บแอปในขั้นที่ 3) ---------- */
+async function cloudFormulaPush(rec){
+  const u = (document.getElementById('apiUrl') || {}).value;
+  if (!u) return; // ยังไม่ได้ตั้งค่า URL เว็บแอป — เก็บไว้ในเครื่องนี้พอ
+  try {
+    await fetch(u.trim(), {
+      method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify({action: 'formulaSave', id: rec.id, name: rec.name, data: {note: rec.note, rows: rec.rows}})
+    });
+  } catch (e) { /* เงียบไว้ ไม่บล็อกการทำงานถ้าออฟไลน์ */ }
+}
+async function cloudFormulaPullAll(){
+  const u = (document.getElementById('apiUrl') || {}).value;
+  if (!u) { alert('กรุณาตั้งค่า URL เว็บแอปในขั้นที่ 3 (บันทึกและส่งอนุมัติ) ก่อน'); return; }
+  try {
+    const r = await fetch(u.trim() + '?res=formulas');
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error);
+    for (const row of j.formulas) {
+      const d = await fetch(u.trim() + '?res=formula&id=' + encodeURIComponent(row.id));
+      const dj = await d.json();
+      if (!dj.ok) continue;
+      const existing = formulas.find(x => x.id === row.id);
+      const rec = {id: row.id, name: row.name, note: dj.data.note || '', rows: dj.data.rows || [], updatedAt: row.updatedAt};
+      if (existing) Object.assign(existing, rec); else formulas.unshift(rec);
+    }
+    saveFormulasToStorage();
+    renderFormulaList();
+    alert('โหลดคลังสูตรจากคลาวด์เรียบร้อย (' + j.formulas.length + ' สูตร)');
+  } catch (e) { alert('โหลดจากคลาวด์ไม่สำเร็จ: ' + e.message); }
+}
+function clearFormulaEditor(){
+  if (!confirm('ล้างสูตรที่กำลังแก้ไข?')) return;
+  fRowsDraft = [blankRow('var'), blankRow('total')];
+  $('fName').value = ''; $('fNote').value = '';
+  $('fReport').innerHTML = '';
+  renderFormulaRows();
+}
+function now_(){
+  try { return new Date().toLocaleString('th-TH'); } catch(e){ return new Date().toISOString(); }
+}
+
+/* ---------- ผูกสูตรกับรายการในตารางขั้นที่ 2 ---------- */
+function openLinkModal(i){
+  linkingItemIndex = i;
+  const sel = $('linkFormulaSelect');
+  sel.innerHTML = formulas.length
+    ? formulas.map(f => `<option value="${f.id}" ${items[i].formulaId===f.id?'selected':''}>${esc(f.name)}</option>`).join('')
+    : `<option value="">(ยังไม่มีสูตรในคลัง — ไปสร้างที่ "จัดการสูตรคำนวณ" ก่อน)</option>`;
+  renderLinkInputs();
+  $('linkModal').classList.add('on');
+}
+function closeLinkModal(){ $('linkModal').classList.remove('on'); linkingItemIndex = null; }
+function renderLinkInputs(){
+  const id = $('linkFormulaSelect').value;
+  const f = formulas.find(x => x.id === id);
+  if (!f) { $('linkInputs').innerHTML = ''; $('linkPreview').textContent=''; return; }
+  const it = items[linkingItemIndex] || {};
+  const overrides = (it.formulaId === id && it.formulaOverrides) ? it.formulaOverrides : {};
+  $('linkInputs').innerHTML = f.rows.map((row, i) => {
+    if (row.type === 'text' || row.type === 'formula' || row.type === 'total') return '';
+    const vn = varNameFor2(row, i);
+    const label = row.type === 'matKey' ? ('!' + row.key + ' ' + (MATKEYS[row.key]||'')) :
+                  row.type === 'opcKey' ? ('$' + row.key + ' ' + (OPCKEYS[row.key]||'')) : row.label;
+    const v = overrides[vn] !== undefined ? overrides[vn] : row.value;
+    return `<label class="f" style="margin-bottom:8px"><span class="tok ${PREFIX[row.type]}">${vn}</span> ${esc(label)}
+      <input type="number" step="any" value="${v}" onfocus="this.select()" data-vn="${vn}" class="linkOverride"></label>`;
+  }).join('');
+  previewLink();
+  document.querySelectorAll('.linkOverride').forEach(inp => inp.addEventListener('input', previewLink));
+}
+function previewLink(){
+  const id = $('linkFormulaSelect').value;
+  const f = formulas.find(x => x.id === id);
+  if (!f) return;
+  const overrides = {};
+  document.querySelectorAll('.linkOverride').forEach(inp => overrides[inp.dataset.vn] = inp.valueAsNumber || 0);
+  const r = computeFormula(f, overrides);
+  $('linkPreview').innerHTML = `คำนวณได้: ค่าวัสดุ/หน่วย ≈ <b>${fmt(r.matSum)}</b> บาท, ค่าแรง/หน่วย ≈ <b>${fmt(r.labSum)}</b> บาท, รวม/หน่วย = <b>${fmt(r.total)}</b> บาท`;
+}
+function applyLinkedFormula(){
+  const id = $('linkFormulaSelect').value;
+  const f = formulas.find(x => x.id === id);
+  if (!f || linkingItemIndex === null) { closeLinkModal(); return; }
+  const overrides = {};
+  document.querySelectorAll('.linkOverride').forEach(inp => overrides[inp.dataset.vn] = inp.valueAsNumber || 0);
+  const r = computeFormula(f, overrides);
+  const it = items[linkingItemIndex];
+  // แยกค่าวัสดุ/ค่าแรงต่อหน่วยตามสัดส่วนของผลรวม #T จริง เผื่อสูตรมีตัวคูณ/ตัวแปรอื่นปนอยู่
+  const base = r.matSum + r.labSum;
+  const scale = base > 0 ? (r.total / base) : 1;
+  it.mat = round2(r.matSum * scale);
+  it.lab = round2(r.labSum * scale);
+  it.formulaId = id;
+  it.formulaOverrides = overrides;
+  if (!it.name) it.name = f.name;
+  renderEditor(); refresh();
+  closeLinkModal();
+}
+function round2(n){ return Math.round(n * 100) / 100; }
 
 /* ---------- ฐานข้อมูลออนไลน์ (Apps Script → Google Sheets) ---------- */
 const getApiUrl = () => $('apiUrl').value.trim();
@@ -777,6 +1367,21 @@ function cloudReturn(){
   cloudAction('return', note.trim());
 }
 
+/* ---------- ช่องกำหนดค่า Factor F เอง (งานทาง) ---------- */
+function setupRoadFInput(){
+  const el = $('factorF');
+  el.addEventListener('dblclick', () => {
+    if (readParams().fCategory !== 'road') return;
+    const cur = el.dataset.roadf || '1.0000';
+    const v = prompt('กำหนดค่า Factor F ของโครงการนี้เอง (อ้างอิงตารางงานทางของกรมฯ ตามประกาศ MLR/VAT ปัจจุบัน):', cur);
+    if (v === null) return;
+    const n = parseFloat(v);
+    if (!isFinite(n) || n <= 0) { alert('กรุณาใส่ตัวเลขมากกว่า 0'); return; }
+    el.dataset.roadf = n.toFixed(4);
+    refresh();
+  });
+}
+
 /* ---------- เริ่มต้น ---------- */
 $('apiUrl').value = localStorage.getItem(API_KEY) || '';
 $('apiUrl').addEventListener('input', () => localStorage.setItem(API_KEY, getApiUrl()));
@@ -793,12 +1398,16 @@ FIELDS.forEach(f => {
   el.addEventListener(el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'input', refresh);
 });
 
+$('factorF').title = 'ดับเบิลคลิกเพื่อกำหนดค่า Factor F งานทางเอง (เมื่อเลือกหมวดงานทาง)';
+setupRoadFInput();
+
 load();
 syncType();
 renderEditor();
 refresh();
 showTab('p4');
 go(1);
+
 </script>
 </body>
 </html>

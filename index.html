@@ -4,118 +4,107 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ระบบร่างแผนรายประมาณการ</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--ink:#1d2433;--muted:#667085;--line:#cfd4dc;--accent:#1f4e79;--bg:#f4f6f9;--warn:#b42318;--ok:#067647}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Sarabun',system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
-header{background:var(--accent);color:#fff;padding:14px 20px}
-header h1{margin:0;font-size:18px}
-header p{margin:4px 0 0;font-size:13px;opacity:.85}
-main{max-width:1180px;margin:0 auto;padding:16px;display:grid;gap:16px}
-section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;overflow-x:auto}
-h2{font-size:16px;margin:0 0 12px;color:var(--accent)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
-input,select{font:inherit;padding:7px 9px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:#fff;width:100%;min-width:0}
-input[type=number]{text-align:right}
-input[type=checkbox]{width:auto}
-.check{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:14px}
-table{width:100%;border-collapse:collapse;font-size:13.5px}
-th,td{border:1px solid var(--line);padding:5px 7px;vertical-align:top}
-th{background:#eef2f7;font-weight:600;text-align:center}
-td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-td input{padding:4px 6px}
-tr.group td{background:#f0f5fb;font-weight:700}
-tr.sub td{font-weight:700;background:#fafafa}
-tr.total td{font-weight:700;background:#e8eef6}
-button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--accent);background:#fff;color:var(--accent);cursor:pointer}
-button.primary{background:var(--accent);color:#fff}
-button.del{border-color:var(--warn);color:var(--warn);padding:2px 8px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.status{font-weight:700;margin-top:10px}
-.bad{color:var(--warn)}.good{color:var(--ok)}
-.doc-head{text-align:center;margin-bottom:14px}
-.doc-head h3{margin:3px 0;font-size:15px;font-weight:600}
-.doc-meta{font-size:13.5px;margin:8px 0 12px;line-height:1.7}
-.sign{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:26px;font-size:14px}
-.sign div{text-align:center}
-.sign .line{border-bottom:1px dotted #333;height:34px;margin-bottom:4px}
-.money{font-variant-numeric:tabular-nums}
-.bahttext{margin:8px 0;font-size:14px}
-.page-break{page-break-before:always}
-@media print{
-  @page{size:A4;margin:14mm}
-  body{background:#fff;font-size:12px}
-  header,.editor,.noprint{display:none!important}
-  main{padding:0;max-width:none;display:block}
-  section{border:none;padding:0;margin-bottom:10px;page-break-inside:auto}
-  table{font-size:10.5px}
-  th,td{padding:3px 4px}
-  tr{page-break-inside:avoid}
-  .sign{font-size:12px}
-}
-</style>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap');
 
 :root{
   --paper:#eceff3; --panel:#ffffff; --ink:#13213a; --ink2:#4b5b74; --rule:#d3dbe6;
-  --navy:#13213a; --navy2:#22345a; --lane:#f5c400; --ok:#1d7a4a; --bad:#b3261e;
+  --navy:#13213a; --navy2:#22345a; --lane:#f5c400; --ok:#1d7a4a; --bad:#b3261e; --soft:#f5f8fb;
 }
-body{background:var(--paper);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;color:var(--ink);font-size:15px;line-height:1.6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;color:var(--ink);font-size:15px;line-height:1.6}
 
-/* ---------- ส่วนหัว: แผ่นป้ายกิโลเมตร ---------- */
+/* ---------- ส่วนหัว ---------- */
 header{background:var(--navy);color:#fff;border-bottom:4px solid var(--lane)}
 header .bar{max-width:1280px;margin:0 auto;padding:22px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-header h1{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:28px;letter-spacing:.2px;margin:0;line-height:1.2}
-header p{opacity:.75;font-size:14px;margin:6px 0 0}
+header h1{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:28px;margin:0;line-height:1.2}
+header p{opacity:.78;font-size:14px;margin:6px 0 0}
 .plate{background:#0b1424;border:2px solid var(--lane);border-radius:6px;padding:10px 20px;min-width:280px;text-align:right}
-.plate small{display:block;font-size:12.5px;opacity:.75;margin-bottom:0}
+.plate small{display:block;font-size:12.5px;opacity:.8}
 .plate b{font-family:'Chakra Petch',sans-serif;font-size:32px;font-weight:700;color:var(--lane);font-variant-numeric:tabular-nums;letter-spacing:.5px}
 
-/* ---------- โครงหน้า: ซ้ายคือการกรอก ขวาคือหน้ากระดาษ ---------- */
-main{max-width:1280px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px;align-items:start}
+/* ---------- โครงหน้า ---------- */
+main{max-width:1280px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
 .col-edit,.col-out{display:grid;gap:18px;min-width:0}
 .col-out{position:sticky;top:16px}
 
-section{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;overflow-x:auto}
-h2{font-family:'Chakra Petch',sans-serif;font-size:17px;font-weight:600;color:var(--ink);margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
-.grid{gap:12px}
-label{font-size:12.5px;color:var(--ink2);font-weight:500}
-input,select{border:1px solid var(--rule);border-radius:4px;padding:8px 10px;background:#f9fbfd;font-family:inherit;color:var(--ink);font-size:14.5px}
+section.card{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;overflow-x:auto}
+h2{font-family:'Chakra Petch',sans-serif;font-size:17px;font-weight:600;margin:0 0 4px}
+.hint{font-size:13.5px;color:var(--ink2);margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+label.f{display:grid;gap:4px;font-size:13px;color:var(--ink2);font-weight:500}
+input,select{font-family:inherit;font-size:14.5px;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:8px 10px;background:#f9fbfd;width:100%;min-width:0}
+input[type=number]{text-align:right;font-variant-numeric:tabular-nums}
+input[type=checkbox]{width:auto}
 input:focus,select:focus,button:focus-visible{outline:3px solid var(--lane);outline-offset:1px;border-color:var(--navy)}
 input[readonly]{background:#eef2f7;color:var(--navy);font-family:'Chakra Petch',sans-serif;font-weight:600}
-.check{font-size:14px;color:var(--ink)}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink)}
 
-table{font-size:13.5px}
-th{background:#f1f4f8;color:var(--ink2);font-weight:600;border-color:var(--rule);font-size:12.5px}
-th,td{border-color:var(--rule)}
-tr.group td{background:#e3eaf3;color:var(--ink);font-family:'Chakra Petch',sans-serif;font-weight:600;font-size:14px}
-tr.sub td{background:#f7f9fb;font-weight:600}
+/* ตัวเลือกประเภทงานแบบการ์ด */
+.seg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.seg{position:relative;border:1px solid var(--rule);border-radius:6px;padding:14px 16px;cursor:pointer;background:#fff;display:grid;gap:2px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg b{font-family:'Chakra Petch',sans-serif;font-size:16px;font-weight:600}
+.seg small{font-size:13px;color:var(--ink2)}
+.seg:has(input:checked){border:2px solid var(--navy);background:var(--soft)}
+.seg:has(input:focus-visible){outline:3px solid var(--lane);outline-offset:2px}
+
+/* ตารางรายการงาน */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+#itemCount{font-size:13.5px;color:var(--ink2)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{border:1px solid var(--rule);padding:6px 8px;vertical-align:middle}
+th{background:#f1f4f8;color:var(--ink2);font-weight:600;font-size:12.5px;text-align:center}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody.rows input{border-color:transparent;background:transparent;padding:6px 6px}
+tbody.rows input:hover{background:#f5f8fb;border-color:var(--rule)}
+tbody.rows input:focus{background:#fff;border-color:var(--navy)}
+tr.group td{background:#e3eaf3;font-family:'Chakra Petch',sans-serif;font-weight:600;font-size:14px}
+tr.sub td{background:var(--soft);font-weight:600}
 tr.total td{background:var(--navy);color:#fff;font-weight:600;border-color:var(--navy)}
-tr.total td input{background:#fff}
+.empty{text-align:center;color:var(--ink2);padding:22px 10px}
 
-button{font-family:inherit;font-size:14px;border-radius:4px;border:1px solid var(--navy);background:#fff;color:var(--navy);padding:8px 14px;font-weight:500;cursor:pointer;transition:background .15s}
+/* ปุ่ม */
+button{font-family:inherit;font-size:14px;border-radius:4px;border:1px solid var(--navy);background:#fff;color:var(--navy);padding:8px 14px;font-weight:500;cursor:pointer}
 button:hover{background:#e6ecf4}
 button.primary{background:var(--navy);color:#fff}
 button.primary:hover{background:var(--navy2)}
-button.del{border-color:var(--bad);color:var(--bad);padding:2px 9px}
+button.del{border:none;color:var(--bad);padding:2px 8px;font-size:18px;line-height:1}
+button.del:hover{background:#fbe9e7}
 button:disabled{opacity:.45;cursor:not-allowed}
-.actions{gap:8px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 
-.doc-head{text-align:left;border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:14px}
+/* ส่วนพับได้ */
+details.box{border:1px dashed var(--rule);border-radius:6px;padding:10px 14px;background:var(--soft)}
+details.box summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:14.5px}
+details.box[open] summary{margin-bottom:12px}
+.summary-note{font-size:13px;color:var(--ink2);margin-left:6px;font-weight:400}
+
+/* สถานะการอนุมัติ */
+.chip{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;background:#e8edf3;color:var(--ink2)}
+.chip.ok{background:#dcf1e5;color:var(--ok)}
+.chip.lock{background:#fde7e4;color:var(--bad)}
+.status{font-size:14px;margin:10px 0 0}
+.good{color:var(--ok)} .bad{color:var(--bad)}
+
+/* แท็บเอกสาร */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:6px}
+.tab{border:none;background:transparent;color:var(--ink2);padding:8px 14px;font-weight:600}
+.tab.on{background:var(--navy);color:#fff}
+.tab:hover:not(.on){background:#eef2f7}
+.tabpane{display:none}
+.tabpane.on{display:block}
+
+/* เอกสารหน้ากระดาษ */
+.doc-head{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:14px}
 .doc-head h3{font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:600;color:var(--navy);margin:0 0 2px}
-.doc-meta{font-size:13.5px;color:var(--ink2);margin:6px 0 0}
-.status{font-size:14px}
-.good{color:var(--ok)}
-.bad{color:var(--bad)}
-.money{font-family:'IBM Plex Sans Thai',sans-serif;font-weight:500}
+.doc-head .sub{font-size:14.5px;color:var(--ink)}
+.doc-meta{font-size:13.5px;color:var(--ink2);margin-top:6px}
+.money{font-variant-numeric:tabular-nums}
 .bahttext{font-size:14px;color:var(--ink2);border-left:3px solid var(--lane);padding:4px 0 4px 10px;margin:14px 0}
-.sign{gap:28px;margin-top:30px}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px}
+.sign div{text-align:center;font-size:13.5px;color:var(--ink2)}
 .sign .line{border-bottom:1px solid var(--ink);height:40px;margin-bottom:6px}
-.sign div{font-size:13.5px;color:var(--ink2)}
 
 @media (max-width:980px){
   main{grid-template-columns:1fr}
@@ -126,21 +115,28 @@ button:disabled{opacity:.45;cursor:not-allowed}
   .plate{min-width:0;width:100%;text-align:left}
   .plate b{font-size:26px}
   main{padding:14px}
+  .seg-wrap{grid-template-columns:1fr}
+  .sign{grid-template-columns:1fr}
 }
 
 @media print{
   @page{size:A4;margin:14mm}
   body{background:#fff}
-  .col-edit,header{display:none!important}
+  header,.col-edit,.tabs,.keep,.noprint{display:none!important}
   main{display:block;padding:0}
   .col-out{display:block;position:static}
-  section{border:none;padding:0;margin-bottom:10px}
+  section.card{border:none;padding:0;margin-bottom:10px}
+  .tabpane{display:block!important;page-break-before:always}
+  .tabpane:first-child{page-break-before:auto}
+  table{font-size:10.5px}
+  th,td{padding:3px 4px}
   tr.total td{background:#e3eaf3!important;color:var(--ink)!important}
   input[readonly]{background:none}
 }
 </style>
 </head>
 <body>
+
 <header>
   <div class="bar">
     <div>
@@ -155,168 +151,202 @@ button:disabled{opacity:.45;cursor:not-allowed}
 </header>
 
 <main>
+
+<!-- ============ คอลัมน์ซ้าย: การกรอก ============ -->
 <div class="col-edit">
 
-<!-- ============ ข้อมูลโครงการ ============ -->
-<section class="editor">
-  <h2>1. ข้อมูลโครงการ</h2>
-  <div class="grid">
-    <label>ประเภทงาน
-      <select id="type">
-        <option value="construction">งานก่อสร้าง (มี Factor F)</option>
-        <option value="activity">งานกิจกรรม / จัดซื้อทั่วไป</option>
-      </select>
-    </label>
-    <label>ชื่อโครงการ / งาน<input id="name" type="text" placeholder="เช่น งานปรับปรุงอาคารที่พักอาศัย"></label>
-    <label>รหัสงาน<input id="code" type="text" placeholder="เช่น 20530"></label>
-    <label>ปีงบประมาณ<input id="fy" type="text" placeholder="เช่น 2568"></label>
-    <label>หน่วยงานเจ้าของโครงการ<input id="agency" type="text" placeholder="เช่น แขวงทางหลวงหนองคาย"></label>
-    <label>สถานที่ก่อสร้าง / ดำเนินการ<input id="place" type="text"></label>
-    <label>วงเงินงบประมาณ (บาท)<input id="budget" type="number" step="0.01" min="0" value="0"></label>
-    <label>จำนวนหน่วย (เช่น จำนวนอาคาร)<input id="units" type="number" step="1" min="1" value="1"></label>
-    <label>Factor F (คำนวณจากตารางอัตโนมัติ)<input id="factorF" type="text" readonly></label>
-    <label class="check"><input id="useF" type="checkbox" checked> คิดค่าก่อสร้างด้วย Factor F</label>
-  </div>
-  <div class="grid" style="margin-top:10px">
-    <label>เงินล่วงหน้าจ่าย (%)<input id="pAdv" type="number" step="0.01" value="15"></label>
-    <label>เงินประกันผลงาน (%)<input id="pGuar" type="number" step="0.01" value="10"></label>
-    <label>ดอกเบี้ยเงินกู้ (%) ตาม ว 481<input id="pMlr" type="number" step="0.01" value="6"></label>
-    <label>ภาษีมูลค่าเพิ่ม VAT (%)<input id="pVat" type="number" step="0.01" value="7"></label>
-  </div>
-  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">
-    Factor F คำนวณจากตารางงานก่อสร้างอาคาร ตามหนังสือกรมบัญชีกลาง ที่ กค 0433.2/ว 481 เงื่อนไข เงินล่วงหน้า 15% ประกันผลงาน 10% ดอกเบี้ย 6% VAT 7% ค่า F ต้องตรวจกับต้นฉบับก่อนใช้จริง
-  </p>
-</section>
+  <section class="card">
+    <h2>1. ประเภทและข้อมูลโครงการ</h2>
+    <p class="hint">เลือกประเภทก่อน ระบบจะใช้ Factor F เฉพาะงานก่อสร้าง</p>
+    <div class="seg-wrap">
+      <label class="seg"><input type="radio" name="typeR" value="construction"><b>งานก่อสร้าง</b><small>คิด Factor F ออกแบบฟอร์ม ปร.4 ปร.5 ปร.6</small></label>
+      <label class="seg"><input type="radio" name="typeR" value="activity"><b>งานกิจกรรม / จัดซื้อ</b><small>ไม่คิด Factor F รวมยอดและจัดรูปแบบเอกสาร</small></label>
+    </div>
+    <input type="hidden" id="type" value="construction">
+    <div class="grid">
+      <label class="f">ชื่อโครงการ / งาน<input id="name" type="text" placeholder="เช่น งานปรับปรุงอาคารที่พักอาศัย"></label>
+      <label class="f">รหัสงาน<input id="code" type="text" placeholder="เช่น 20530"></label>
+      <label class="f">ปีงบประมาณ<input id="fy" type="text" placeholder="เช่น 2568"></label>
+      <label class="f">หน่วยงาน<input id="agency" type="text" placeholder="เช่น แขวงทางหลวงหนองคาย"></label>
+      <label class="f">สถานที่<input id="place" type="text" placeholder="เช่น อ.เมือง จ.หนองคาย"></label>
+      <label class="f">วงเงินงบประมาณ (บาท)<input id="budget" type="number" step="0.01" min="0" value="0" onfocus="this.select()"></label>
+      <label class="f">จำนวนหน่วย<input id="units" type="number" step="1" min="1" value="1" onfocus="this.select()"></label>
+      <label class="f">Factor F (คำนวณให้อัตโนมัติ)<input id="factorF" type="text" readonly></label>
+    </div>
+    <div style="margin-top:12px">
+      <label class="check"><input id="useF" type="checkbox" checked> คิดค่าก่อสร้างด้วย Factor F</label>
+    </div>
+    <details class="box" style="margin-top:14px">
+      <summary>เงื่อนไขขั้นสูง<span class="summary-note">ค่าเริ่มต้นตามหนังสือ ว 481 ไม่ต้องแก้ถ้าไม่จำเป็น</span></summary>
+      <div class="grid">
+        <label class="f">เงินล่วงหน้าจ่าย (%)<input id="pAdv" type="number" step="0.01" value="15" onfocus="this.select()"></label>
+        <label class="f">เงินประกันผลงาน (%)<input id="pGuar" type="number" step="0.01" value="10" onfocus="this.select()"></label>
+        <label class="f">ดอกเบี้ยเงินกู้ (%)<input id="pMlr" type="number" step="0.01" value="6" onfocus="this.select()"></label>
+        <label class="f">ภาษีมูลค่าเพิ่ม (%)<input id="pVat" type="number" step="0.01" value="7" onfocus="this.select()"></label>
+      </div>
+      <p class="hint" style="margin:10px 0 0">ตารางค่า F ใช้เงื่อนไขงานอาคาร 15% / 10% / 6% / 7% ควรตรวจกับต้นฉบับก่อนใช้จริง</p>
+    </details>
+  </section>
 
-<!-- ============ ผู้ลงนาม ============ -->
-<section class="editor">
-  <h2>2. ผู้ลงนาม</h2>
-  <div class="grid">
-    <label>ผู้ประมาณราคา<input id="sgn1" type="text"></label>
-    <label>ผู้ตรวจ<input id="sgn2" type="text"></label>
-    <label>ผู้เห็นชอบ<input id="sgn3" type="text"></label>
-    <label>ผู้อนุมัติ<input id="sgn4" type="text"></label>
-  </div>
-</section>
+  <section class="card">
+    <div class="toolbar">
+      <div>
+        <h2>2. รายการงาน (ต่อ 1 หน่วย)</h2>
+        <p class="hint" style="margin:0">พิมพ์ชื่อหมวดซ้ำเพื่อจัดกลุ่ม กด Enter ที่ช่องหมายเหตุของแถวสุดท้ายเพื่อเพิ่มแถวใหม่</p>
+      </div>
+      <span id="itemCount"></span>
+    </div>
+    <datalist id="groupList"></datalist>
+    <datalist id="unitList">
+      <option value="ชุด"></option><option value="แห่ง"></option><option value="ตร.ม."></option>
+      <option value="ชิ้น"></option><option value="เมตร"></option><option value="ถัง"></option>
+      <option value="ม้วน"></option><option value="แผ่น"></option><option value="ตัว"></option>
+      <option value="เส้น"></option><option value="กระป๋อง"></option><option value="ท่อน"></option>
+      <option value="ลบ.ม."></option><option value="กก."></option><option value="งาน"></option>
+    </datalist>
+    <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:15%">หมวด</th>
+          <th>รายการ</th>
+          <th style="width:9%">หน่วย</th>
+          <th style="width:9%">ปริมาณ</th>
+          <th style="width:12%">วัสดุ/หน่วย</th>
+          <th style="width:12%">แรงงาน/หน่วย</th>
+          <th style="width:12%">รวม/หน่วย</th>
+          <th style="width:13%">หมายเหตุ</th>
+          <th style="width:3%"></th>
+        </tr>
+      </thead>
+      <tbody id="itemBody" class="rows"></tbody>
+    </table>
+    </div>
+    <div class="actions">
+      <button class="primary" onclick="addItem()">+ เพิ่มรายการ</button>
+      <button id="clearBtn" onclick="clearAll()">ล้างข้อมูลทั้งหมด</button>
+    </div>
+    <p class="hint" style="margin:10px 0 0">ข้อมูลถูกบันทึกในเบราว์เซอร์เครื่องนี้อัตโนมัติ</p>
+  </section>
 
-<!-- ============ รายการงาน ============ -->
-<section class="editor">
-  <h2>3. รายการงาน (ต่อ 1 หน่วย)</h2>
-  <table>
-    <thead>
-      <tr>
-        <th style="width:14%">หมวด</th>
-        <th>รายการ</th>
-        <th style="width:8%">หน่วย</th>
-        <th style="width:9%">ปริมาณ</th>
-        <th style="width:11%">ราคาวัสดุ/หน่วย</th>
-        <th style="width:11%">ค่าแรง/หน่วย</th>
-        <th style="width:11%">รวม/หน่วย</th>
-        <th style="width:12%">หมายเหตุ</th>
-        <th style="width:4%"></th>
-      </tr>
-    </thead>
-    <tbody id="itemBody"></tbody>
-  </table>
-  <div class="actions">
-    <button class="primary" onclick="addItem()">+ เพิ่มรายการ</button>
-    <button onclick="exportCSV()">ส่งออก CSV (เปิดด้วย Excel)</button>
-    <button onclick="window.print()">พิมพ์ / บันทึกเป็น PDF</button>
-    <button onclick="clearAll()">ล้างข้อมูลทั้งหมด</button>
-  </div>
-  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">ข้อมูลถูกบันทึกในเบราว์เซอร์นี้อัตโนมัติ</p>
-</section>
+  <section class="card">
+    <h2>3. ผู้ลงนาม</h2>
+    <p class="hint">ชื่อจะแสดงในช่องลงนามของแบบ ปร.6</p>
+    <div class="grid">
+      <label class="f">ผู้ประมาณราคา<input id="sgn1" type="text"></label>
+      <label class="f">ผู้ตรวจ<input id="sgn2" type="text"></label>
+      <label class="f">ผู้เห็นชอบ<input id="sgn3" type="text"></label>
+      <label class="f">ผู้อนุมัติ<input id="sgn4" type="text"></label>
+    </div>
+  </section>
 
-<!-- ============ ฐานข้อมูลออนไลน์ ============ -->
-<section class="editor" id="cloudSection">
-  <h2>4. ฐานข้อมูลและการอนุมัติ (Google Sheets)</h2>
-  <div class="grid">
-    <label>URL เว็บแอป (จาก Apps Script ลงท้าย /exec)<input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec"></label>
-    <label>รหัสโครงการ (ใช้เป็นชื่ออ้างอิง)<input id="projId" type="text" placeholder="เช่น 20530-2568"></label>
-    <label>โครงการที่บันทึกไว้<select id="projList"><option value="">— กดรีเฟรชเพื่อดูรายการ —</option></select></label>
-  </div>
-  <div class="actions">
-    <button onclick="cloudList()">รีเฟรชรายการ</button>
-    <button onclick="cloudLoad()">โหลดโครงการ</button>
-    <button class="primary" onclick="cloudSave()">บันทึกร่าง</button>
-    <button onclick="cloudAction('submit')">ส่งตรวจ</button>
-    <button onclick="cloudAction('check')">ตรวจแล้ว ส่งอนุมัติ</button>
-    <button onclick="cloudAction('approve')">อนุมัติ</button>
-    <button onclick="cloudReturn()">ส่งกลับแก้ไข</button>
-    <button onclick="cloudAction('unlock')">ปลดล็อก</button>
-  </div>
-  <p class="status" id="cloudMsg"></p>
-  <p style="font-size:13px;color:var(--muted);margin:8px 0 0">
-    ลำดับ: ร่าง → รอตรวจ → รออนุมัติ → อนุมัติแล้ว (ล็อก) ปุ่มแต่ละอันจะใช้ได้เฉพาะบทบาทที่กำหนด
-  </p>
-</section>
+  <section class="card" id="cloudSection">
+    <div class="toolbar">
+      <div>
+        <h2>4. บันทึกและอนุมัติ</h2>
+        <p class="hint" style="margin:0">ลำดับ ร่าง → ส่งตรวจ → ตรวจแล้ว → อนุมัติ เมื่ออนุมัติแล้วเอกสารจะถูกล็อก</p>
+      </div>
+      <span id="statusChip" class="chip">ยังไม่บันทึก</span>
+    </div>
+    <details class="box" open>
+      <summary>การเชื่อมต่อฐานข้อมูล (Google Sheets)</summary>
+      <div class="grid">
+        <label class="f">URL เว็บแอป (ลงท้าย /exec)<input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec"></label>
+        <label class="f">รหัสโครงการ<input id="projId" type="text" placeholder="เช่น 20530-2568"></label>
+        <label class="f">โครงการที่บันทึกไว้<select id="projList"><option value="">กดรีเฟรชเพื่อดูรายการ</option></select></label>
+      </div>
+      <div class="actions">
+        <button onclick="cloudList()">รีเฟรชรายการ</button>
+        <button onclick="cloudLoad()">เปิดโครงการ</button>
+      </div>
+    </details>
+    <div class="actions" style="margin-top:14px">
+      <button class="primary" onclick="cloudSave()">บันทึกร่าง</button>
+      <button onclick="cloudAction('submit')">ส่งตรวจ</button>
+      <button onclick="cloudAction('check')">ตรวจแล้ว ส่งอนุมัติ</button>
+      <button onclick="cloudAction('approve')">อนุมัติ</button>
+      <button onclick="cloudReturn()">ส่งกลับแก้ไข</button>
+      <button onclick="cloudAction('unlock')">ปลดล็อก</button>
+    </div>
+    <p class="status" id="cloudMsg"></p>
+  </section>
 
 </div>
+
+<!-- ============ คอลัมน์ขวา: หน้ากระดาษ ============ -->
 <div class="col-out">
-<!-- ============ ผลลัพธ์ ============ -->
-<section id="out-p4">
-  <div class="doc-head">
-    <h3 id="o-title">แผนรายประมาณการ</h3>
-    <h3 id="o-sub"></h3>
-    <div class="doc-meta" id="o-meta"></div>
-  </div>
-  <h2 class="editor">แบบ ปร.4 — แบบแสดงรายการปริมาณและราคา (ต่อ 1 หน่วย)</h2>
-  <table>
-    <thead>
-      <tr>
-        <th style="width:5%">ลำดับ</th>
-        <th>รายการ</th>
-        <th style="width:7%">หน่วย</th>
-        <th style="width:8%">ปริมาณ</th>
-        <th style="width:9%">ราคา/หน่วย (วัสดุ)</th>
-        <th style="width:10%">ค่าวัสดุ</th>
-        <th style="width:9%">ค่าแรง/หน่วย</th>
-        <th style="width:10%">ค่าแรง</th>
-        <th style="width:10%">รวม</th>
-        <th style="width:12%">หมายเหตุ</th>
-      </tr>
-    </thead>
-    <tbody id="p4Body"></tbody>
-  </table>
-</section>
 
-<section id="out-p5" class="page-break">
-  <div class="doc-head">
-    <h3>แบบ ปร.5 — สรุปค่าก่อสร้าง</h3>
+  <div class="tabs keep" role="tablist">
+    <button class="tab on" data-tab="p4" onclick="showTab('p4')">ปร.4 รายการ</button>
+    <button class="tab" data-tab="p5" onclick="showTab('p5')">ปร.5 สรุปค่างาน</button>
+    <button class="tab" data-tab="p6" onclick="showTab('p6')">ปร.6 สรุปทั้งโครงการ</button>
+    <button class="tab" onclick="exportCSV()">ส่งออก CSV</button>
+    <button class="tab" onclick="window.print()">พิมพ์ / PDF</button>
   </div>
-  <table>
-    <tbody id="p5Body"></tbody>
-  </table>
-  <div id="p5Status" class="status noprint"></div>
-</section>
 
-<section id="out-p6" class="page-break">
-  <div class="doc-head">
-    <h3>แบบ ปร.6 — สรุปค่าก่อสร้างทั้งโครงการ</h3>
-    <div class="doc-meta" id="o-p6meta"></div>
-  </div>
-  <table>
-    <tbody id="p6Body"></tbody>
-  </table>
-  <div class="bahttext" id="o-baht"></div>
-  <div class="sign">
-    <div><div class="line"></div><span id="s1"></span><br>ผู้ประมาณราคา</div>
-    <div><div class="line"></div><span id="s2"></span><br>ผู้ตรวจ</div>
-    <div><div class="line"></div><span id="s3"></span><br>ผู้เห็นชอบ</div>
-    <div><div class="line"></div><span id="s4"></span><br>ผู้อนุมัติ</div>
-  </div>
-</section>
+  <section class="card tabpane on" id="out-p4">
+    <div class="doc-head">
+      <h3 id="o-title">แผนรายประมาณการ</h3>
+      <div class="sub" id="o-sub"></div>
+      <div class="doc-meta" id="o-meta"></div>
+    </div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:6%">ลำดับ</th>
+          <th>รายการ</th>
+          <th style="width:8%">หน่วย</th>
+          <th style="width:8%">ปริมาณ</th>
+          <th style="width:10%">วัสดุ/หน่วย</th>
+          <th style="width:11%">ค่าวัสดุ</th>
+          <th style="width:10%">แรงงาน/หน่วย</th>
+          <th style="width:11%">ค่าแรง</th>
+          <th style="width:11%">รวม</th>
+        </tr>
+      </thead>
+      <tbody id="p4Body"></tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="card tabpane" id="out-p5">
+    <div class="doc-head">
+      <h3>แบบ ปร.5 สรุปค่าก่อสร้าง</h3>
+      <div class="doc-meta" id="o-p5meta"></div>
+    </div>
+    <table><tbody id="p5Body"></tbody></table>
+    <div id="p5Status" class="status"></div>
+  </section>
+
+  <section class="card tabpane" id="out-p6">
+    <div class="doc-head">
+      <h3>แบบ ปร.6 สรุปค่าก่อสร้างทั้งโครงการ</h3>
+      <div class="doc-meta" id="o-p6meta"></div>
+    </div>
+    <table><tbody id="p6Body"></tbody></table>
+    <div class="bahttext" id="o-baht"></div>
+    <div class="sign">
+      <div><div class="line"></div><span id="s1"></span><br>ผู้ประมาณราคา</div>
+      <div><div class="line"></div><span id="s2"></span><br>ผู้ตรวจ</div>
+      <div><div class="line"></div><span id="s3"></span><br>ผู้เห็นชอบ</div>
+      <div><div class="line"></div><span id="s4"></span><br>ผู้อนุมัติ</div>
+    </div>
+  </section>
 
 </div>
+
 </main>
 
 <script>
 const KEY = 'budgetPlanV1';
+const API_KEY = 'budgetApiUrl';
 const $ = id => document.getElementById(id);
 const FIELDS = ['type','name','code','fy','agency','place','budget','units','useF','pAdv','pGuar','pMlr','pVat','sgn1','sgn2','sgn3','sgn4'];
+let items = [];
+
 // ตาราง Factor F งานก่อสร้างอาคาร เงินล่วงหน้า 15% ประกันผลงาน 10% ดอกเบี้ย 6% VAT 7%
-// อ้างอิงหนังสือกรมบัญชีกลาง ที่ กค 0433.2/ว 481 (ค่าระหว่างช่วงคำนวณด้วยการเทียบสัดส่วน)
-// ค่าต้องตรวจกับต้นฉบับหนังสือเวียนก่อนใช้งานจริง
+// อ้างอิงหนังสือกรมบัญชีกลาง ที่ กค 0433.2/ว 481 ค่าระหว่างช่วงคำนวณด้วยการเทียบสัดส่วน
 const FTABLE = [
   [0,1.3052],[500000,1.3052],[1000000,1.3028],[2000000,1.3011],[5000000,1.2972],
   [10000000,1.2909],[15000000,1.2484],[20000000,1.2482],[25000000,1.2212],[30000000,1.2127],
@@ -332,7 +362,6 @@ function fromTable(a){
   }
   return FTABLE[FTABLE.length - 1][1];
 }
-let items = [];
 
 /* ---------- ตัวช่วย ---------- */
 const fmt = n => (Number(n) || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -366,7 +395,7 @@ function bahtText(n){
   return thaiInt(i) + 'บาท' + (d === '00' ? 'ถ้วน' : thaiInt(d) + 'สตางค์');
 }
 
-/* ---------- อ่าน/บันทึกค่า ---------- */
+/* ---------- อ่านและบันทึกค่า ---------- */
 function readParams(){
   return {
     type: $('type').value,
@@ -391,9 +420,14 @@ function snapshot(){
 function save(){
   try { localStorage.setItem(KEY, JSON.stringify(snapshot())); } catch (e) {}
 }
+function syncType(){
+  const t = $('type').value || 'construction';
+  document.querySelectorAll('input[name=typeR]').forEach(r => r.checked = (r.value === t));
+}
 function applyData(d){
   FIELDS.forEach(f => { if (d[f] !== undefined) { if ($(f).type === 'checkbox') $(f).checked = d[f]; else $(f).value = d[f]; } });
   items = Array.isArray(d.items) ? d.items : [];
+  syncType();
   renderEditor();
 }
 function load(){
@@ -403,24 +437,44 @@ function load(){
   } catch (e) {}
 }
 
-/* ---------- ตารางรายการ (ช่องกรอก) ---------- */
+/* ---------- ตารางรายการ ---------- */
 function renderEditor(){
-  $('itemBody').innerHTML = items.map((it, i) => `
-    <tr>
-      <td><input value="${esc(it.group)}" oninput="upd(${i},'group',this.value)"></td>
-      <td><input value="${esc(it.name)}" oninput="upd(${i},'name',this.value)"></td>
-      <td><input value="${esc(it.unit)}" oninput="upd(${i},'unit',this.value)"></td>
-      <td><input type="number" step="any" value="${it.qty}" oninput="upd(${i},'qty',this.value)"></td>
-      <td><input type="number" step="any" value="${it.mat}" oninput="upd(${i},'mat',this.value)"></td>
-      <td><input type="number" step="any" value="${it.lab}" oninput="upd(${i},'lab',this.value)"></td>
-      <td class="num" id="rowtot${i}">${fmt((it.qty * it.mat) + (it.qty * it.lab))}</td>
-      <td><input value="${esc(it.note)}" oninput="upd(${i},'note',this.value)"></td>
-      <td><button class="del" onclick="delItem(${i})">×</button></td>
-    </tr>`).join('') || `<tr><td colspan="9" style="text-align:center;color:var(--muted)">ยังไม่มีรายการ กด "+ เพิ่มรายการ"</td></tr>`;
+  const body = $('itemBody');
+  if (!items.length) {
+    body.innerHTML = `<tr><td colspan="9" class="empty">ยังไม่มีรายการ<br><button class="primary" style="margin-top:10px" onclick="addItem()">เพิ่มรายการแรก</button></td></tr>`;
+  } else {
+    body.innerHTML = items.map((it, i) => `
+      <tr>
+        <td><input list="groupList" placeholder="หมวด" value="${esc(it.group)}" oninput="upd(${i},'group',this.value)"></td>
+        <td><input placeholder="ชื่อรายการ" value="${esc(it.name)}" oninput="upd(${i},'name',this.value)"></td>
+        <td><input list="unitList" placeholder="หน่วย" value="${esc(it.unit)}" oninput="upd(${i},'unit',this.value)"></td>
+        <td><input type="number" step="any" value="${it.qty}" onfocus="this.select()" oninput="upd(${i},'qty',this.value)"></td>
+        <td><input type="number" step="any" value="${it.mat}" onfocus="this.select()" oninput="upd(${i},'mat',this.value)"></td>
+        <td><input type="number" step="any" value="${it.lab}" onfocus="this.select()" oninput="upd(${i},'lab',this.value)"></td>
+        <td class="num" id="rowtot${i}">${fmt((it.qty * it.mat) + (it.qty * it.lab))}</td>
+        <td><input placeholder="หมายเหตุ" value="${esc(it.note)}" onkeydown="rowKey(event,${i})" oninput="upd(${i},'note',this.value)"></td>
+        <td><button class="del" title="ลบแถวนี้" onclick="delItem(${i})">×</button></td>
+      </tr>`).join('');
+  }
+  refreshGroupList();
+}
+function refreshGroupList(){
+  const groups = [...new Set(items.map(it => (it.group || '').trim()).filter(Boolean))];
+  $('groupList').innerHTML = groups.map(g => `<option value="${esc(g)}"></option>`).join('');
+  const n = items.length;
+  $('itemCount').textContent = n ? `${n} รายการ · ${groups.length} หมวด` : '';
 }
 function addItem(){
-  items.push({group:'', name:'', unit:'', qty:1, mat:0, lab:0, note:''});
+  items.push({group: '', name: '', unit: '', qty: 1, mat: 0, lab: 0, note: ''});
   renderEditor(); refresh();
+  const inputs = document.querySelectorAll('#itemBody tr:last-child input');
+  if (inputs[0]) inputs[0].focus();
+}
+function rowKey(e, i){
+  if (e.key === 'Enter' && i === items.length - 1) {
+    e.preventDefault();
+    addItem();
+  }
 }
 function delItem(i){
   items.splice(i, 1);
@@ -429,14 +483,17 @@ function delItem(i){
 function upd(i, key, val){
   items[i][key] = (key === 'qty' || key === 'mat' || key === 'lab') ? num(val) : val;
   const it = items[i];
-  const t = $('rowtot' + i); if (t) t.textContent = fmt(it.qty * it.mat + it.qty * it.lab);
+  const t = $('rowtot' + i);
+  if (t) t.textContent = fmt(it.qty * it.mat + it.qty * it.lab);
+  if (key === 'group') refreshGroupList();
   refresh();
 }
 function clearAll(){
   if (!confirm('ล้างข้อมูลทั้งหมดในหน้านี้?')) return;
   items = [];
   FIELDS.forEach(f => { if ($(f).type === 'checkbox') $(f).checked = true; else $(f).value = ''; });
-  $('type').value = 'construction'; $('units').value = '1'; $('budget').value = '0';
+  $('type').value = 'construction'; syncType();
+  $('units').value = '1'; $('budget').value = '0';
   $('pAdv').value = '15'; $('pGuar').value = '10'; $('pMlr').value = '6'; $('pVat').value = '7';
   renderEditor(); refresh();
 }
@@ -454,11 +511,11 @@ function compute(p){
   });
   const unitMat = groups.reduce((s, g) => s + g.mat, 0);
   const unitLab = groups.reduce((s, g) => s + g.lab, 0);
-  const unitCost = unitMat + unitLab;                    // รวมต่อ 1 หน่วย
-  const baseCost = unitCost * p.units;                   // ค่างานต้นทุนทั้งหมด
+  const unitCost = unitMat + unitLab;
+  const baseCost = unitCost * p.units;
   const isC = p.type === 'construction';
   const F = (isC && p.useF) ? fromTable(baseCost) : 1;
-  const constructionCost = baseCost * F;                 // ค่าก่อสร้างตามสูตร
+  const constructionCost = baseCost * F;
   const finalTotal = p.budget > 0 ? p.budget : constructionCost;
   const adjust = p.budget > 0 ? p.budget - constructionCost : 0;
   return {groups, unitMat, unitLab, unitCost, baseCost, F, constructionCost, finalTotal, adjust, isC};
@@ -466,18 +523,18 @@ function compute(p){
 
 /* ---------- แสดงผล ---------- */
 function renderOutput(p, c){
-  $('o-title').textContent = c.isC ? 'แผนรายประมาณการ ค่าก่อสร้าง' : 'แผนรายประมาณการ กิจกรรม';
-  $('o-sub').textContent = [p.name, p.code ? 'รหัสงาน ' + p.code : ''].filter(Boolean).join(' ');
+  $('o-title').textContent = c.isC ? 'แผนรายประมาณการ งานก่อสร้าง' : 'แผนรายประมาณการ งานกิจกรรม';
+  $('o-sub').textContent = [p.name, p.code ? 'รหัสงาน ' + p.code : ''].filter(Boolean).join(' ') || 'ยังไม่ได้ระบุชื่องาน';
   $('o-meta').innerHTML = [
     p.fy ? `ปีงบประมาณ ${esc(p.fy)}` : '',
     p.agency ? `หน่วยงาน ${esc(p.agency)}` : '',
     p.place ? `สถานที่ ${esc(p.place)}` : '',
     `จำนวน ${p.units} หน่วย`
-  ].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  ].filter(Boolean).join(' | ');
 
   let rows = '', n = 0;
   c.groups.forEach(g => {
-    rows += `<tr class="group"><td colspan="10">${esc(g.name)}</td></tr>`;
+    rows += `<tr class="group"><td colspan="9">${esc(g.name)}</td></tr>`;
     g.rows.forEach(r => {
       n++;
       rows += `<tr>
@@ -489,45 +546,41 @@ function renderOutput(p, c){
         <td class="num">${fmt(r.matTot)}</td>
         <td class="num">${fmt(r.lab)}</td>
         <td class="num">${fmt(r.labTot)}</td>
-        <td class="num">${fmt(r.tot)}</td>
-        <td>${esc(r.note)}</td></tr>`;
+        <td class="num">${fmt(r.tot)}</td></tr>`;
     });
     rows += `<tr class="sub"><td colspan="5" style="text-align:right">รวมหมวด ${esc(g.name)}</td>
-      <td class="num">${fmt(g.mat)}</td><td></td><td class="num">${fmt(g.lab)}</td><td class="num">${fmt(g.mat + g.lab)}</td><td></td></tr>`;
+      <td class="num">${fmt(g.mat)}</td><td></td><td class="num">${fmt(g.lab)}</td><td class="num">${fmt(g.mat + g.lab)}</td></tr>`;
   });
   rows += `<tr class="total"><td colspan="5" style="text-align:right">รวมต่อ 1 หน่วย</td>
-    <td class="num">${fmt(c.unitMat)}</td><td></td><td class="num">${fmt(c.unitLab)}</td><td class="num">${fmt(c.unitCost)}</td><td></td></tr>`;
+    <td class="num">${fmt(c.unitMat)}</td><td></td><td class="num">${fmt(c.unitLab)}</td><td class="num">${fmt(c.unitCost)}</td></tr>`;
   if (p.units > 1) rows += `<tr class="total"><td colspan="8" style="text-align:right">รวมทั้งหมด (${p.units} หน่วย)</td>
-    <td class="num">${fmt(c.baseCost)}</td><td></td></tr>`;
-  $('p4Body').innerHTML = rows || `<tr><td colspan="10" style="text-align:center;color:var(--muted)">ยังไม่มีรายการ</td></tr>`;
+    <td class="num">${fmt(c.baseCost)}</td></tr>`;
+  $('p4Body').innerHTML = rows || `<tr><td colspan="9" class="empty">ยังไม่มีรายการ ไปที่หน้ากรอกเพื่อเพิ่มรายการงาน</td></tr>`;
 
-  // ปร.5
   const p5 = [
     ['ค่างานต้นทุนรวม', fmt(c.baseCost)],
     ['Factor F', c.isC && p.useF ? c.F.toFixed(4) : 'ไม่ใช้'],
     ['ค่าก่อสร้าง (ค่างานต้นทุน × F)', fmt(c.constructionCost)],
-    ['ปรับยอด (งบประมาณ − ค่าก่อสร้าง)', p.budget > 0 ? fmt(c.adjust) : '-'],
+    ['ปรับยอด (วงเงิน − ค่าก่อสร้าง)', p.budget > 0 ? fmt(c.adjust) : '-'],
     ['รวมค่าก่อสร้างทั้งสิ้น', fmt(c.finalTotal)],
   ];
   if (p.units > 1) p5.push(['เฉลี่ยต่อหน่วย', fmt(c.finalTotal / p.units)]);
   $('p5Body').innerHTML = p5.map(([a, b], i) =>
-    `<tr class="${i === p5.length - 1 ? 'total' : ''}"><td>${a}</td><td class="num money" style="width:30%">${b}</td></tr>`).join('');
+    `<tr class="${i === p5.length - 1 ? 'total' : ''}"><td>${a}</td><td class="num money" style="width:32%">${b}</td></tr>`).join('');
 
-  const status = p.budget > 0
+  $('p5Status').innerHTML = p.budget > 0
     ? (Math.abs(c.adjust) < 0.005
-        ? `<span class="good">✓ ค่าก่อสร้างตรงกับวงเงินพอดี</span>`
+        ? `<span class="good">ค่าก่อสร้างตรงกับวงเงินพอดี</span>`
         : `<span class="${c.adjust >= 0 ? 'good' : 'bad'}">${c.adjust >= 0 ? 'วงเงินเหลือ' : 'ค่าก่อสร้างเกินวงเงิน'} ${fmt(Math.abs(c.adjust))} บาท</span>`)
-    : `<span style="color:var(--muted)">ยังไม่ได้กรอกวงเงิน จะใช้ค่าก่อสร้างตามสูตรเป็นยอดรวม</span>`;
-  $('p5Status').innerHTML = status;
+    : `<span style="color:var(--ink2)">ยังไม่ได้กรอกวงเงิน ระบบจะใช้ค่าก่อสร้างตามสูตรเป็นยอดรวม</span>`;
+  $('o-p5meta').innerHTML = [p.name, p.code ? 'รหัสงาน ' + esc(p.code) : ''].filter(Boolean).join(' | ');
 
-  // ปร.6
   $('o-p6meta').innerHTML = [
     p.name ? `ชื่อโครงการ ${esc(p.name)}${p.code ? ' รหัสงาน ' + esc(p.code) : ''}` : '',
     p.agency ? `หน่วยงานเจ้าของโครงการ ${esc(p.agency)}` : '',
-    isNaN(p.fy) ? '' : '',
   ].filter(Boolean).join('<br>');
   $('p6Body').innerHTML = `
-    <tr><td>รวมค่าก่อสร้างทั้งโครงการ</td><td class="num money" style="width:30%">${fmt(c.constructionCost)}</td></tr>
+    <tr><td>รวมค่าก่อสร้างทั้งโครงการ</td><td class="num money" style="width:32%">${fmt(c.constructionCost)}</td></tr>
     <tr><td>ปรับลด / ปรับเพิ่ม</td><td class="num money">${p.budget > 0 ? fmt(c.adjust) : '-'}</td></tr>
     <tr class="total"><td>รวมค่าก่อสร้างทั้งสิ้น</td><td class="num money">${fmt(c.finalTotal)}</td></tr>`;
   $('o-baht').innerHTML = `ตัวอักษร: (${bahtText(c.finalTotal)})`;
@@ -540,8 +593,13 @@ function refresh(){
   save();
   const c = compute(p);
   $('factorF').value = (p.type === 'construction' && p.useF) ? c.F.toFixed(4) : 'ไม่ใช้';
-  renderOutput(p, c);
   $('plate').textContent = fmt(c.finalTotal);
+  renderOutput(p, c);
+}
+
+function showTab(k){
+  document.querySelectorAll('.tab[data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === k));
+  document.querySelectorAll('.tabpane').forEach(p => p.classList.toggle('on', p.id === 'out-' + k));
 }
 
 /* ---------- ส่งออก CSV ---------- */
@@ -552,7 +610,7 @@ function exportCSV(){
   lines.push(['แผนรายประมาณการ', p.name, p.code].map(q).join(','));
   lines.push(['ปีงบประมาณ', p.fy, 'หน่วยงาน', p.agency].map(q).join(','));
   lines.push('');
-  lines.push(['ลำดับ','หมวด','รายการ','หน่วย','ปริมาณ','ราคาวัสดุ/หน่วย','ค่าวัสดุ','ค่าแรง/หน่วย','ค่าแรง','รวม','หมายเหตุ'].map(q).join(','));
+  lines.push(['ลำดับ','หมวด','รายการ','หน่วย','ปริมาณ','วัสดุ/หน่วย','ค่าวัสดุ','แรงงาน/หน่วย','ค่าแรง','รวม','หมายเหตุ'].map(q).join(','));
   let n = 0;
   c.groups.forEach(g => g.rows.forEach(r => {
     n++;
@@ -573,9 +631,23 @@ function exportCSV(){
 }
 
 /* ---------- ฐานข้อมูลออนไลน์ (Apps Script → Google Sheets) ---------- */
-const API_KEY = 'budgetApiUrl';
 const getApiUrl = () => $('apiUrl').value.trim();
 function setMsg(text, ok){ $('cloudMsg').innerHTML = `<span class="${ok ? 'good' : 'bad'}">${esc(text)}</span>`; }
+
+function applyLock(status){
+  const locked = status === 'อนุมัติแล้ว';
+  document.querySelectorAll('.col-edit input, .col-edit select, .col-edit button').forEach(el => {
+    if (el.closest('#cloudSection')) return;
+    if (el.classList.contains('keep')) return;
+    el.disabled = locked;
+  });
+  const chip = $('statusChip');
+  chip.textContent = status || 'ยังไม่บันทึก';
+  chip.className = 'chip' + (status === 'อนุมัติแล้ว' ? ' lock' : (status ? ' ok' : ''));
+  const old = $('lockMsg');
+  if (old) old.remove();
+  if (locked) $('cloudMsg').insertAdjacentHTML('afterend', '<p id="lockMsg" class="bad" style="margin:6px 0 0">เอกสารนี้อนุมัติแล้วและถูกล็อก หากต้องแก้ไขให้ผู้อนุมัติปลดล็อกก่อน</p>');
+}
 
 async function cloudList(){
   const u = getApiUrl();
@@ -584,8 +656,8 @@ async function cloudList(){
     const r = await fetch(u);
     const j = await r.json();
     if (!j.ok) throw new Error(j.error);
-    $('projList').innerHTML = '<option value="">— เลือกโครงการ —</option>' + j.projects.map(p =>
-      `<option value="${esc(p.id)}">${esc(p.id)} · ${esc(p.title)} (${esc(p.updatedAt)})</option>`).join('');
+    $('projList').innerHTML = '<option value="">เลือกโครงการ</option>' + j.projects.map(p =>
+      `<option value="${esc(p.id)}">${esc(p.id)} ${esc(p.title)} (${esc(p.status)})</option>`).join('');
     setMsg(`พบ ${j.projects.length} โครงการ`, true);
   } catch (e) { setMsg('เชื่อมต่อไม่ได้: ' + e.message, false); }
 }
@@ -602,8 +674,8 @@ async function cloudLoad(){
     $('projId').value = j.id;
     refresh();
     applyLock(j.status);
-    setMsg(`โหลด "${j.title}" สถานะ: ${j.status} (อัปเดตล่าสุด ${j.updatedAt})`, true);
-  } catch (e) { setMsg('โหลดไม่สำเร็จ: ' + e.message, false); }
+    setMsg(`เปิด "${j.title}" สถานะ ${j.status} อัปเดตล่าสุด ${j.updatedAt}`, true);
+  } catch (e) { setMsg('เปิดโครงการไม่สำเร็จ: ' + e.message, false); }
 }
 
 async function cloudSave(){
@@ -614,7 +686,6 @@ async function cloudSave(){
   const data = snapshot();
   const title = (data.name || '').trim() || id;
   try {
-    // ส่งเป็น text/plain เพื่อหลีกเลี่ยงการตรวจสอบ CORS แบบ preflight ของ Apps Script
     const r = await fetch(u, {
       method: 'POST',
       headers: {'Content-Type': 'text/plain;charset=utf-8'},
@@ -622,12 +693,12 @@ async function cloudSave(){
     });
     const j = await r.json();
     if (!j.ok) throw new Error(j.error);
-    setMsg(`บันทึกแล้ว เมื่อ ${j.updatedAt}`, true);
+    applyLock(j.status || 'ร่าง');
+    setMsg(`บันทึกร่างแล้ว เมื่อ ${j.updatedAt}`, true);
     cloudList();
   } catch (e) { setMsg('บันทึกไม่สำเร็จ: ' + e.message, false); }
 }
 
-// ดำเนินการตามลำดับอนุมัติ (ส่งตรวจ / ตรวจแล้ว / อนุมัติ / ปลดล็อก)
 async function cloudAction(action, note){
   const u = getApiUrl();
   const id = $('projId').value.trim();
@@ -641,11 +712,10 @@ async function cloudAction(action, note){
     const j = await r.json();
     if (!j.ok) throw new Error(j.error);
     applyLock(j.status);
-    setMsg(`สถานะปัจจุบัน: ${j.status} (${j.updatedAt})`, true);
+    setMsg(`สถานะปัจจุบัน ${j.status} (${j.updatedAt})`, true);
   } catch (e) { setMsg('ดำเนินการไม่สำเร็จ: ' + e.message, false); }
 }
 
-// ส่งกลับแก้ไขต้องระบุเหตุผล
 function cloudReturn(){
   const note = prompt('ระบุเหตุผลที่ส่งกลับแก้ไข');
   if (note === null) return;
@@ -653,29 +723,27 @@ function cloudReturn(){
   cloudAction('return', note.trim());
 }
 
-// ล็อกเอกสารเมื่ออนุมัติแล้ว: ปิดการแก้ไขทุกช่องในส่วนแผนรายประมาณการ
-function applyLock(status){
-  const locked = status === 'อนุมัติแล้ว';
-  document.querySelectorAll('.editor input, .editor select, .editor button.primary, .editor button.del, .editor button[onclick^="clearAll"]').forEach(el => {
-    if (el.closest('#cloudSection')) return;
-    el.disabled = locked;
-  });
-  const old = $('lockMsg');
-  if (old) old.remove();
-  if (locked) $('cloudMsg').insertAdjacentHTML('afterend', '<p id="lockMsg" class="bad" style="margin:6px 0 0">เอกสารนี้อนุมัติแล้วและถูกล็อก หากต้องแก้ไขให้ผู้อนุมัติปลดล็อกก่อน</p>');
-}
-
 /* ---------- เริ่มต้น ---------- */
 $('apiUrl').value = localStorage.getItem(API_KEY) || '';
 $('apiUrl').addEventListener('input', () => localStorage.setItem(API_KEY, getApiUrl()));
 $('projList').addEventListener('change', () => { $('projId').value = $('projList').value; });
-load();
+
+document.querySelectorAll('input[name=typeR]').forEach(r => r.addEventListener('change', () => {
+  $('type').value = r.value;
+  refresh();
+}));
+
 FIELDS.forEach(f => {
   const el = $(f);
+  if (!el) return;
   el.addEventListener(el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'input', refresh);
 });
+
+load();
+syncType();
 renderEditor();
 refresh();
+showTab('p4');
 </script>
 </body>
 </html>

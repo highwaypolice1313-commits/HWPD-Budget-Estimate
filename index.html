@@ -12,126 +12,138 @@
   --navy:#13213a; --navy2:#22345a; --lane:#f5c400; --ok:#1d7a4a; --bad:#b3261e; --soft:#f5f8fb;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;color:var(--ink);font-size:15px;line-height:1.6}
+body{margin:0;background:var(--paper);font-family:'IBM Plex Sans Thai',system-ui,sans-serif;color:var(--ink);font-size:16px;line-height:1.6}
 
 /* ---------- ส่วนหัว ---------- */
 header{background:var(--navy);color:#fff;border-bottom:4px solid var(--lane)}
-header .bar{max-width:1280px;margin:0 auto;padding:22px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-header h1{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:28px;margin:0;line-height:1.2}
-header p{opacity:.78;font-size:14px;margin:6px 0 0}
-.plate{background:#0b1424;border:2px solid var(--lane);border-radius:6px;padding:10px 20px;min-width:280px;text-align:right}
-.plate small{display:block;font-size:12.5px;opacity:.8}
-.plate b{font-family:'Chakra Petch',sans-serif;font-size:32px;font-weight:700;color:var(--lane);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+header .bar{max-width:980px;margin:0 auto;padding:20px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+header h1{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:26px;margin:0;line-height:1.2}
+header p{opacity:.78;font-size:14.5px;margin:6px 0 0}
+.plate{background:#0b1424;border:2px solid var(--lane);border-radius:6px;padding:10px 20px;min-width:260px;text-align:right}
+.plate small{display:block;font-size:13px;opacity:.85}
+.plate b{font-family:'Chakra Petch',sans-serif;font-size:30px;font-weight:700;color:var(--lane);font-variant-numeric:tabular-nums}
 
-/* ---------- โครงหน้า ---------- */
-main{max-width:1280px;margin:0 auto;padding:24px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
-.col-edit,.col-out{display:grid;gap:18px;min-width:0}
-.col-out{position:sticky;top:16px}
+/* ---------- ขั้นตอน 1-2-3 ---------- */
+main{max-width:980px;margin:0 auto;padding:24px}
+.stepper{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stepbtn{display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:12px 14px;cursor:pointer;font-family:inherit;font-size:15px;color:var(--ink2)}
+.stepbtn .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#e3eaf3;color:var(--ink2);display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',sans-serif;font-weight:700}
+.stepbtn.on{border:2px solid var(--navy);color:var(--ink);font-weight:600}
+.stepbtn.on .n{background:var(--navy);color:#fff}
+.stepbtn.done .n{background:#dcf1e5;color:var(--ok)}
+.stepbtn:focus-visible{outline:3px solid var(--lane);outline-offset:2px}
 
-section.card{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;overflow-x:auto}
-h2{font-family:'Chakra Petch',sans-serif;font-size:17px;font-weight:600;margin:0 0 4px}
-.hint{font-size:13.5px;color:var(--ink2);margin:0 0 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-label.f{display:grid;gap:4px;font-size:13px;color:var(--ink2);font-weight:500}
-input,select{font-family:inherit;font-size:14.5px;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:8px 10px;background:#f9fbfd;width:100%;min-width:0}
+.step{display:none;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:24px}
+.step.on{display:block}
+.step h2{font-family:'Chakra Petch',sans-serif;font-size:21px;font-weight:600;margin:0 0 4px}
+.lead{font-size:15px;color:var(--ink2);margin:0 0 18px}
+.sub-h{font-family:'Chakra Petch',sans-serif;font-size:16px;font-weight:600;margin:22px 0 10px}
+
+.navrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:18px;border-top:1px solid var(--rule)}
+.navrow .right{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- ฟอร์ม ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+label.f{display:grid;gap:5px;font-size:14px;color:var(--ink2);font-weight:500}
+input,select{font-family:inherit;font-size:15.5px;color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:9px 11px;background:#f9fbfd;width:100%;min-width:0}
 input[type=number]{text-align:right;font-variant-numeric:tabular-nums}
 input[type=checkbox]{width:auto}
 input:focus,select:focus,button:focus-visible{outline:3px solid var(--lane);outline-offset:1px;border-color:var(--navy)}
 input[readonly]{background:#eef2f7;color:var(--navy);font-family:'Chakra Petch',sans-serif;font-weight:600}
-.check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink)}
+.check{display:flex;align-items:center;gap:8px;font-size:15px}
 
-/* ตัวเลือกประเภทงานแบบการ์ด */
-.seg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-.seg{position:relative;border:1px solid var(--rule);border-radius:6px;padding:14px 16px;cursor:pointer;background:#fff;display:grid;gap:2px}
+/* ประเภทงานแบบการ์ด */
+.seg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.seg{position:relative;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;cursor:pointer;background:#fff;display:grid;gap:3px}
 .seg input{position:absolute;opacity:0;pointer-events:none}
-.seg b{font-family:'Chakra Petch',sans-serif;font-size:16px;font-weight:600}
-.seg small{font-size:13px;color:var(--ink2)}
+.seg b{font-family:'Chakra Petch',sans-serif;font-size:17px;font-weight:600}
+.seg small{font-size:14px;color:var(--ink2)}
 .seg:has(input:checked){border:2px solid var(--navy);background:var(--soft)}
 .seg:has(input:focus-visible){outline:3px solid var(--lane);outline-offset:2px}
 
-/* ตารางรายการงาน */
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-#itemCount{font-size:13.5px;color:var(--ink2)}
-table{width:100%;border-collapse:collapse;font-size:13.5px}
-th,td{border:1px solid var(--rule);padding:6px 8px;vertical-align:middle}
-th{background:#f1f4f8;color:var(--ink2);font-weight:600;font-size:12.5px;text-align:center}
-td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-tbody.rows input{border-color:transparent;background:transparent;padding:6px 6px}
+details.box{border:1px dashed var(--rule);border-radius:6px;padding:12px 16px;background:var(--soft);margin-top:18px}
+details.box summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:15px}
+details.box[open] summary{margin-bottom:12px}
+.summary-note{font-size:14px;color:var(--ink2);margin-left:8px;font-weight:400}
+.hint{font-size:14px;color:var(--ink2);margin:10px 0 0}
+
+/* ---------- ตารางรายการ ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{border-bottom:1px solid var(--rule);padding:8px 8px;vertical-align:middle}
+th{background:#f1f4f8;color:var(--ink2);font-weight:600;font-size:13.5px;text-align:left;white-space:nowrap}
+th.r,td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody.rows input{border-color:transparent;background:transparent;padding:7px 7px}
 tbody.rows input:hover{background:#f5f8fb;border-color:var(--rule)}
 tbody.rows input:focus{background:#fff;border-color:var(--navy)}
-tr.group td{background:#e3eaf3;font-family:'Chakra Petch',sans-serif;font-weight:600;font-size:14px}
+tbody.rows tr:hover td{background:#fbfcfe}
+tr.group td{background:#e3eaf3;font-family:'Chakra Petch',sans-serif;font-weight:600;font-size:15px}
 tr.sub td{background:var(--soft);font-weight:600}
 tr.total td{background:var(--navy);color:#fff;font-weight:600;border-color:var(--navy)}
-.empty{text-align:center;color:var(--ink2);padding:22px 10px}
+.empty{text-align:center;color:var(--ink2);padding:28px 10px}
+.itemcount{font-size:14px;color:var(--ink2)}
 
-/* ปุ่ม */
-button{font-family:inherit;font-size:14px;border-radius:4px;border:1px solid var(--navy);background:#fff;color:var(--navy);padding:8px 14px;font-weight:500;cursor:pointer}
+/* ---------- ปุ่ม ---------- */
+button{font-family:inherit;font-size:15px;border-radius:4px;border:1px solid var(--navy);background:#fff;color:var(--navy);padding:9px 16px;font-weight:500;cursor:pointer}
 button:hover{background:#e6ecf4}
 button.primary{background:var(--navy);color:#fff}
 button.primary:hover{background:var(--navy2)}
-button.del{border:none;color:var(--bad);padding:2px 8px;font-size:18px;line-height:1}
+button.ghost{border-color:transparent;background:transparent;color:var(--ink2);text-decoration:underline}
+button.ghost:hover{background:transparent;color:var(--navy)}
+button.del{border:none;color:var(--bad);padding:2px 8px;font-size:20px;line-height:1;background:transparent}
 button.del:hover{background:#fbe9e7}
 button:disabled{opacity:.45;cursor:not-allowed}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 
-/* ส่วนพับได้ */
-details.box{border:1px dashed var(--rule);border-radius:6px;padding:10px 14px;background:var(--soft)}
-details.box summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:14.5px}
-details.box[open] summary{margin-bottom:12px}
-.summary-note{font-size:13px;color:var(--ink2);margin-left:6px;font-weight:400}
-
-/* สถานะการอนุมัติ */
-.chip{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;background:#e8edf3;color:var(--ink2)}
-.chip.ok{background:#dcf1e5;color:var(--ok)}
-.chip.lock{background:#fde7e4;color:var(--bad)}
-.status{font-size:14px;margin:10px 0 0}
-.good{color:var(--ok)} .bad{color:var(--bad)}
-
-/* แท็บเอกสาร */
-.tabs{display:flex;gap:6px;flex-wrap:wrap;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:6px}
-.tab{border:none;background:transparent;color:var(--ink2);padding:8px 14px;font-weight:600}
+/* ---------- ขั้นที่ 3: ผลลัพธ์ ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--soft);border:1px solid var(--rule);border-radius:6px;padding:6px;margin-bottom:16px}
+.tab{border:none;background:transparent;color:var(--ink2);padding:9px 14px;font-weight:600}
 .tab.on{background:var(--navy);color:#fff}
 .tab:hover:not(.on){background:#eef2f7}
+.tabs .spacer{flex:1}
 .tabpane{display:none}
 .tabpane.on{display:block}
-
-/* เอกสารหน้ากระดาษ */
 .doc-head{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:14px}
-.doc-head h3{font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:600;color:var(--navy);margin:0 0 2px}
-.doc-head .sub{font-size:14.5px;color:var(--ink)}
-.doc-meta{font-size:13.5px;color:var(--ink2);margin-top:6px}
+.doc-head h3{font-family:'Chakra Petch',sans-serif;font-size:20px;font-weight:600;color:var(--navy);margin:0 0 2px}
+.doc-head .sub{font-size:15.5px}
+.doc-meta{font-size:14px;color:var(--ink2);margin-top:6px}
 .money{font-variant-numeric:tabular-nums}
-.bahttext{font-size:14px;color:var(--ink2);border-left:3px solid var(--lane);padding:4px 0 4px 10px;margin:14px 0}
+.good{color:var(--ok)} .bad{color:var(--bad)}
+.status{font-size:15px;margin:10px 0 0}
+.bahttext{font-size:15px;color:var(--ink2);border-left:3px solid var(--lane);padding:4px 0 4px 10px;margin:14px 0}
 .sign{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px}
-.sign div{text-align:center;font-size:13.5px;color:var(--ink2)}
+.sign div{text-align:center;font-size:14px;color:var(--ink2)}
 .sign .line{border-bottom:1px solid var(--ink);height:40px;margin-bottom:6px}
 
-@media (max-width:980px){
-  main{grid-template-columns:1fr}
-  .col-out{position:static}
-}
-@media (max-width:640px){
+/* สถานะ */
+.chip{display:inline-block;font-size:14px;font-weight:600;padding:4px 12px;border-radius:999px;background:#e8edf3;color:var(--ink2)}
+.chip.ok{background:#dcf1e5;color:var(--ok)}
+.chip.lock{background:#fde7e4;color:var(--bad)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+@media (max-width:720px){
   header h1{font-size:22px}
   .plate{min-width:0;width:100%;text-align:left}
   .plate b{font-size:26px}
-  main{padding:14px}
+  .stepper{grid-template-columns:1fr}
+  .stepbtn{padding:10px 12px}
   .seg-wrap{grid-template-columns:1fr}
   .sign{grid-template-columns:1fr}
+  .step{padding:18px}
+  main{padding:14px}
 }
 
 @media print{
   @page{size:A4;margin:14mm}
-  body{background:#fff}
-  header,.col-edit,.tabs,.keep,.noprint{display:none!important}
-  main{display:block;padding:0}
-  .col-out{display:block;position:static}
-  section.card{border:none;padding:0;margin-bottom:10px}
+  body{background:#fff;font-size:12px}
+  header,.stepper,#step1,#step2,.noprint,.keep,.navrow,details{display:none!important}
+  main{padding:0;max-width:none}
+  #step3{display:block!important;border:none;padding:0}
   .tabpane{display:block!important;page-break-before:always}
-  .tabpane:first-child{page-break-before:auto}
+  .tabpane:first-of-type{page-break-before:auto}
   table{font-size:10.5px}
   th,td{padding:3px 4px}
   tr.total td{background:#e3eaf3!important;color:var(--ink)!important}
-  input[readonly]{background:none}
 }
 </style>
 </head>
@@ -141,7 +153,7 @@ details.box[open] summary{margin-bottom:12px}
   <div class="bar">
     <div>
       <h1>ระบบร่างแผนรายประมาณการ</h1>
-      <p>ปร.4 ปร.5 ปร.6 สำหรับงานก่อสร้างที่มี Factor F และงานกิจกรรมหรือจัดซื้อทั่วไป</p>
+      <p>ทำตามทีละขั้นตอน 3 ขั้น ได้เอกสาร ปร.4 ปร.5 ปร.6 พร้อมพิมพ์</p>
     </div>
     <div class="plate">
       <small>ค่าก่อสร้างรวม (บาท)</small>
@@ -152,115 +164,194 @@ details.box[open] summary{margin-bottom:12px}
 
 <main>
 
-<!-- ============ คอลัมน์ซ้าย: การกรอก ============ -->
-<div class="col-edit">
+<nav class="stepper keep" aria-label="ขั้นตอน">
+  <button class="stepbtn on" id="sb1" onclick="go(1)"><span class="n">1</span>ข้อมูลงาน</button>
+  <button class="stepbtn" id="sb2" onclick="go(2)"><span class="n">2</span>ใส่รายการงาน</button>
+  <button class="stepbtn" id="sb3" onclick="go(3)"><span class="n">3</span>ดูผลและพิมพ์</button>
+</nav>
 
-  <section class="card">
-    <h2>1. ประเภทและข้อมูลโครงการ</h2>
-    <p class="hint">เลือกประเภทก่อน ระบบจะใช้ Factor F เฉพาะงานก่อสร้าง</p>
-    <div class="seg-wrap">
-      <label class="seg"><input type="radio" name="typeR" value="construction"><b>งานก่อสร้าง</b><small>คิด Factor F ออกแบบฟอร์ม ปร.4 ปร.5 ปร.6</small></label>
-      <label class="seg"><input type="radio" name="typeR" value="activity"><b>งานกิจกรรม / จัดซื้อ</b><small>ไม่คิด Factor F รวมยอดและจัดรูปแบบเอกสาร</small></label>
-    </div>
-    <input type="hidden" id="type" value="construction">
+<!-- ============ ขั้นที่ 1: ข้อมูลงาน ============ -->
+<section class="step on" id="step1">
+  <h2>ขั้นที่ 1: ข้อมูลงาน</h2>
+  <p class="lead">เลือกประเภทงาน แล้วกรอกชื่องานและวงเงิน ถ้ายังไม่แน่ใจ กดปุ่มข้อมูลตัวอย่างเพื่อดูการทำงานก่อนได้</p>
+
+  <div class="seg-wrap">
+    <label class="seg"><input type="radio" name="typeR" value="construction"><b>งานก่อสร้าง</b><small>มีค่า F ใช้กับแบบ ปร.4 ปร.5 ปร.6</small></label>
+    <label class="seg"><input type="radio" name="typeR" value="activity"><b>งานกิจกรรมหรือจัดซื้อ</b><small>รวมยอดและพิมพ์เอกสารได้ ไม่มีค่า F</small></label>
+  </div>
+  <input type="hidden" id="type" value="construction">
+
+  <div class="grid">
+    <label class="f">ชื่องาน<input id="name" type="text" placeholder="เช่น งานปรับปรุงอาคารที่พักอาศัย"></label>
+    <label class="f">รหัสงาน<input id="code" type="text" placeholder="เช่น 20530"></label>
+    <label class="f">หน่วยงาน<input id="agency" type="text" placeholder="เช่น แขวงทางหลวงหนองคาย"></label>
+    <label class="f">ปีงบประมาณ<input id="fy" type="text" placeholder="เช่น 2568"></label>
+    <label class="f">สถานที่<input id="place" type="text" placeholder="เช่น อำเภอเมือง จังหวัดหนองคาย"></label>
+    <label class="f">วงเงินที่ได้รับ (บาท)<input id="budget" type="number" step="0.01" min="0" value="0" onfocus="this.select()"></label>
+    <label class="f">จำนวนหน่วย<input id="units" type="number" step="1" min="1" value="1" onfocus="this.select()"></label>
+    <label class="f">ค่า F ที่ระบบคำนวณให้<input id="factorF" type="text" readonly></label>
+  </div>
+  <p class="hint">วงเงินที่ได้รับ ใส่เฉพาะเมื่อมีวงเงินชัดเจน ระบบจะปรับยอดให้เท่าวงเงิน ถ้าไม่ใส่ระบบจะใช้ยอดที่คำนวณได้</p>
+
+  <label class="check" style="margin-top:14px"><input id="useF" type="checkbox" checked> คิดค่า F ด้วย (ใช้กับงานก่อสร้างเท่านั้น)</label>
+
+  <details class="box">
+    <summary>เงื่อนไขขั้นสูง<span class="summary-note">ค่าเริ่มต้นตามหนังสือ ว 481 ไม่ต้องแก้ถ้าไม่จำเป็น</span></summary>
     <div class="grid">
-      <label class="f">ชื่อโครงการ / งาน<input id="name" type="text" placeholder="เช่น งานปรับปรุงอาคารที่พักอาศัย"></label>
-      <label class="f">รหัสงาน<input id="code" type="text" placeholder="เช่น 20530"></label>
-      <label class="f">ปีงบประมาณ<input id="fy" type="text" placeholder="เช่น 2568"></label>
-      <label class="f">หน่วยงาน<input id="agency" type="text" placeholder="เช่น แขวงทางหลวงหนองคาย"></label>
-      <label class="f">สถานที่<input id="place" type="text" placeholder="เช่น อ.เมือง จ.หนองคาย"></label>
-      <label class="f">วงเงินงบประมาณ (บาท)<input id="budget" type="number" step="0.01" min="0" value="0" onfocus="this.select()"></label>
-      <label class="f">จำนวนหน่วย<input id="units" type="number" step="1" min="1" value="1" onfocus="this.select()"></label>
-      <label class="f">Factor F (คำนวณให้อัตโนมัติ)<input id="factorF" type="text" readonly></label>
+      <label class="f">เงินล่วงหน้าจ่าย (%)<input id="pAdv" type="number" step="0.01" value="15" onfocus="this.select()"></label>
+      <label class="f">เงินประกันผลงาน (%)<input id="pGuar" type="number" step="0.01" value="10" onfocus="this.select()"></label>
+      <label class="f">ดอกเบี้ยเงินกู้ (%)<input id="pMlr" type="number" step="0.01" value="6" onfocus="this.select()"></label>
+      <label class="f">ภาษีมูลค่าเพิ่ม (%)<input id="pVat" type="number" step="0.01" value="7" onfocus="this.select()"></label>
     </div>
-    <div style="margin-top:12px">
-      <label class="check"><input id="useF" type="checkbox" checked> คิดค่าก่อสร้างด้วย Factor F</label>
-    </div>
-    <details class="box" style="margin-top:14px">
-      <summary>เงื่อนไขขั้นสูง<span class="summary-note">ค่าเริ่มต้นตามหนังสือ ว 481 ไม่ต้องแก้ถ้าไม่จำเป็น</span></summary>
-      <div class="grid">
-        <label class="f">เงินล่วงหน้าจ่าย (%)<input id="pAdv" type="number" step="0.01" value="15" onfocus="this.select()"></label>
-        <label class="f">เงินประกันผลงาน (%)<input id="pGuar" type="number" step="0.01" value="10" onfocus="this.select()"></label>
-        <label class="f">ดอกเบี้ยเงินกู้ (%)<input id="pMlr" type="number" step="0.01" value="6" onfocus="this.select()"></label>
-        <label class="f">ภาษีมูลค่าเพิ่ม (%)<input id="pVat" type="number" step="0.01" value="7" onfocus="this.select()"></label>
-      </div>
-      <p class="hint" style="margin:10px 0 0">ตารางค่า F ใช้เงื่อนไขงานอาคาร 15% / 10% / 6% / 7% ควรตรวจกับต้นฉบับก่อนใช้จริง</p>
-    </details>
-  </section>
+    <p class="hint">ค่า F ตามตารางงานอาคาร เงินล่วงหน้า 15% ประกัน 10% ดอกเบี้ย 6% VAT 7% ควรตรวจกับต้นฉบับก่อนใช้จริง</p>
+  </details>
 
-  <section class="card">
-    <div class="toolbar">
-      <div>
-        <h2>2. รายการงาน (ต่อ 1 หน่วย)</h2>
-        <p class="hint" style="margin:0">พิมพ์ชื่อหมวดซ้ำเพื่อจัดกลุ่ม กด Enter ที่ช่องหมายเหตุของแถวสุดท้ายเพื่อเพิ่มแถวใหม่</p>
-      </div>
-      <span id="itemCount"></span>
+  <div class="navrow">
+    <button class="ghost nav" onclick="loadSample()">ใส่ข้อมูลตัวอย่าง</button>
+    <div class="right">
+      <button class="primary nav" onclick="go(2)">ถัดไป: ใส่รายการงาน</button>
     </div>
-    <datalist id="groupList"></datalist>
-    <datalist id="unitList">
-      <option value="ชุด"></option><option value="แห่ง"></option><option value="ตร.ม."></option>
-      <option value="ชิ้น"></option><option value="เมตร"></option><option value="ถัง"></option>
-      <option value="ม้วน"></option><option value="แผ่น"></option><option value="ตัว"></option>
-      <option value="เส้น"></option><option value="กระป๋อง"></option><option value="ท่อน"></option>
-      <option value="ลบ.ม."></option><option value="กก."></option><option value="งาน"></option>
-    </datalist>
-    <div style="overflow-x:auto">
+  </div>
+</section>
+
+<!-- ============ ขั้นที่ 2: รายการงาน ============ -->
+<section class="step" id="step2">
+  <div class="toolbar">
+    <div>
+      <h2>ขั้นที่ 2: ใส่รายการงาน</h2>
+      <p class="lead" style="margin-bottom:0">กรอกราคาต่อ 1 หน่วย เช่น ราคากระเบื้อง 1 ตารางเมตร ระบบจะคูณจำนวนและรวมให้เอง</p>
+    </div>
+    <span id="itemCount" class="itemcount"></span>
+  </div>
+
+  <datalist id="groupList"></datalist>
+  <datalist id="unitList">
+    <option value="ชุด"></option><option value="แห่ง"></option><option value="ตร.ม."></option>
+    <option value="ชิ้น"></option><option value="เมตร"></option><option value="ถัง"></option>
+    <option value="ม้วน"></option><option value="แผ่น"></option><option value="ตัว"></option>
+    <option value="เส้น"></option><option value="กระป๋อง"></option><option value="ท่อน"></option>
+    <option value="ลบ.ม."></option><option value="กก."></option><option value="งาน"></option>
+  </datalist>
+
+  <div class="tablewrap" style="margin-top:16px">
     <table>
       <thead>
         <tr>
-          <th style="width:15%">หมวด</th>
+          <th style="width:16%">หมวด</th>
           <th>รายการ</th>
-          <th style="width:9%">หน่วย</th>
-          <th style="width:9%">ปริมาณ</th>
-          <th style="width:12%">วัสดุ/หน่วย</th>
-          <th style="width:12%">แรงงาน/หน่วย</th>
-          <th style="width:12%">รวม/หน่วย</th>
-          <th style="width:13%">หมายเหตุ</th>
-          <th style="width:3%"></th>
+          <th style="width:10%">หน่วย</th>
+          <th class="r" style="width:9%">จำนวน</th>
+          <th class="r" style="width:12%">ค่าวัสดุ/หน่วย</th>
+          <th class="r" style="width:12%">ค่าแรง/หน่วย</th>
+          <th class="r" style="width:13%">รวม</th>
+          <th style="width:4%"></th>
         </tr>
       </thead>
       <tbody id="itemBody" class="rows"></tbody>
     </table>
-    </div>
-    <div class="actions">
-      <button class="primary" onclick="addItem()">+ เพิ่มรายการ</button>
-      <button id="clearBtn" onclick="clearAll()">ล้างข้อมูลทั้งหมด</button>
-    </div>
-    <p class="hint" style="margin:10px 0 0">ข้อมูลถูกบันทึกในเบราว์เซอร์เครื่องนี้อัตโนมัติ</p>
-  </section>
+  </div>
+  <p class="hint">ใส่หมวดเพื่อจัดกลุ่มรายการ เช่น งานพื้น งานสี กด Enter ที่ช่องค่าแรงของแถวสุดท้ายเพื่อเพิ่มแถวใหม่ ถ้าไม่มีค่าแรงให้ใส่ 0</p>
 
-  <section class="card">
-    <h2>3. ผู้ลงนาม</h2>
-    <p class="hint">ชื่อจะแสดงในช่องลงนามของแบบ ปร.6</p>
+  <div class="navrow">
+    <div class="right">
+      <button class="nav" onclick="go(1)">ย้อนกลับ</button>
+      <button class="nav" id="addBtn" onclick="addItem()">+ เพิ่มรายการ</button>
+    </div>
+    <div class="right">
+      <button class="ghost nav" onclick="clearAll()">ล้างข้อมูลทั้งหมด</button>
+      <button class="primary nav" onclick="go(3)">ถัดไป: ดูผล</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ขั้นที่ 3: ผลและการพิมพ์ ============ -->
+<section class="step" id="step3">
+  <h2>ขั้นที่ 3: ดูผลและพิมพ์</h2>
+  <p class="lead">ตรวจยอดในแต่ละแบบ ถ้าถูกต้องให้กดพิมพ์หรือบันทึกเป็น PDF</p>
+
+  <div class="tabs keep" role="tablist">
+    <button class="tab on" data-tab="p4" onclick="showTab('p4')">ปร.4 รายการ</button>
+    <button class="tab" data-tab="p5" onclick="showTab('p5')">ปร.5 สรุปค่างาน</button>
+    <button class="tab" data-tab="p6" onclick="showTab('p6')">ปร.6 ยอดทั้งโครงการ</button>
+    <span class="spacer"></span>
+    <button class="tab" onclick="exportCSV()">ส่งออก CSV</button>
+    <button class="tab" onclick="window.print()">พิมพ์ / PDF</button>
+  </div>
+
+  <div class="tabpane on" id="out-p4">
+    <div class="doc-head">
+      <h3 id="o-title">แผนรายประมาณการ</h3>
+      <div class="sub" id="o-sub"></div>
+      <div class="doc-meta" id="o-meta"></div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:6%">ลำดับ</th>
+            <th>รายการ</th>
+            <th style="width:8%">หน่วย</th>
+            <th class="r" style="width:8%">จำนวน</th>
+            <th class="r" style="width:10%">วัสดุ/หน่วย</th>
+            <th class="r" style="width:11%">ค่าวัสดุ</th>
+            <th class="r" style="width:10%">แรงงาน/หน่วย</th>
+            <th class="r" style="width:11%">ค่าแรง</th>
+            <th class="r" style="width:11%">รวม</th>
+          </tr>
+        </thead>
+        <tbody id="p4Body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tabpane" id="out-p5">
+    <div class="doc-head">
+      <h3>แบบ ปร.5 สรุปค่าก่อสร้าง</h3>
+      <div class="doc-meta" id="o-p5meta"></div>
+    </div>
+    <div class="tablewrap"><table><tbody id="p5Body"></tbody></table></div>
+    <div id="p5Status" class="status"></div>
+  </div>
+
+  <div class="tabpane" id="out-p6">
+    <div class="doc-head">
+      <h3>แบบ ปร.6 สรุปค่าก่อสร้างทั้งโครงการ</h3>
+      <div class="doc-meta" id="o-p6meta"></div>
+    </div>
+    <div class="tablewrap"><table><tbody id="p6Body"></tbody></table></div>
+    <div class="bahttext" id="o-baht"></div>
+    <div class="sign">
+      <div><div class="line"></div><span id="s1"></span><br>ผู้ประมาณราคา</div>
+      <div><div class="line"></div><span id="s2"></span><br>ผู้ตรวจ</div>
+      <div><div class="line"></div><span id="s3"></span><br>ผู้เห็นชอบ</div>
+      <div><div class="line"></div><span id="s4"></span><br>ผู้อนุมัติ</div>
+    </div>
+  </div>
+
+  <details class="box keep" style="margin-top:24px">
+    <summary>ชื่อผู้ลงนามในแบบ ปร.6<span class="summary-note">ไม่บังคับ</span></summary>
     <div class="grid">
       <label class="f">ผู้ประมาณราคา<input id="sgn1" type="text"></label>
       <label class="f">ผู้ตรวจ<input id="sgn2" type="text"></label>
       <label class="f">ผู้เห็นชอบ<input id="sgn3" type="text"></label>
       <label class="f">ผู้อนุมัติ<input id="sgn4" type="text"></label>
     </div>
-  </section>
+  </details>
 
-  <section class="card" id="cloudSection">
-    <div class="toolbar">
-      <div>
-        <h2>4. บันทึกและอนุมัติ</h2>
-        <p class="hint" style="margin:0">ลำดับ ร่าง → ส่งตรวจ → ตรวจแล้ว → อนุมัติ เมื่ออนุมัติแล้วเอกสารจะถูกล็อก</p>
-      </div>
+  <details class="box keep" id="cloudSection">
+    <summary>บันทึกและส่งอนุมัติ<span class="summary-note">ต้องเชื่อมฐานข้อมูลก่อน</span></summary>
+    <div class="toolbar" style="margin-bottom:12px">
+      <p class="hint" style="margin:0">ลำดับ: ร่าง → ส่งตรวจ → ตรวจแล้ว → อนุมัติ เมื่ออนุมัติแล้วเอกสารจะถูกล็อก</p>
       <span id="statusChip" class="chip">ยังไม่บันทึก</span>
     </div>
-    <details class="box" open>
-      <summary>การเชื่อมต่อฐานข้อมูล (Google Sheets)</summary>
-      <div class="grid">
-        <label class="f">URL เว็บแอป (ลงท้าย /exec)<input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec"></label>
-        <label class="f">รหัสโครงการ<input id="projId" type="text" placeholder="เช่น 20530-2568"></label>
-        <label class="f">โครงการที่บันทึกไว้<select id="projList"><option value="">กดรีเฟรชเพื่อดูรายการ</option></select></label>
-      </div>
-      <div class="actions">
-        <button onclick="cloudList()">รีเฟรชรายการ</button>
-        <button onclick="cloudLoad()">เปิดโครงการ</button>
-      </div>
-    </details>
-    <div class="actions" style="margin-top:14px">
+    <div class="grid">
+      <label class="f">URL เว็บแอป (ลงท้าย /exec)<input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec"></label>
+      <label class="f">รหัสโครงการ<input id="projId" type="text" placeholder="เช่น 20530-2568"></label>
+      <label class="f">โครงการที่บันทึกไว้<select id="projList"><option value="">กดรีเฟรชเพื่อดูรายการ</option></select></label>
+    </div>
+    <div class="actions">
+      <button onclick="cloudList()">รีเฟรชรายการ</button>
+      <button onclick="cloudLoad()">เปิดโครงการ</button>
       <button class="primary" onclick="cloudSave()">บันทึกร่าง</button>
       <button onclick="cloudAction('submit')">ส่งตรวจ</button>
       <button onclick="cloudAction('check')">ตรวจแล้ว ส่งอนุมัติ</button>
@@ -269,81 +360,23 @@ details.box[open] summary{margin-bottom:12px}
       <button onclick="cloudAction('unlock')">ปลดล็อก</button>
     </div>
     <p class="status" id="cloudMsg"></p>
-  </section>
+  </details>
 
-</div>
-
-<!-- ============ คอลัมน์ขวา: หน้ากระดาษ ============ -->
-<div class="col-out">
-
-  <div class="tabs keep" role="tablist">
-    <button class="tab on" data-tab="p4" onclick="showTab('p4')">ปร.4 รายการ</button>
-    <button class="tab" data-tab="p5" onclick="showTab('p5')">ปร.5 สรุปค่างาน</button>
-    <button class="tab" data-tab="p6" onclick="showTab('p6')">ปร.6 สรุปทั้งโครงการ</button>
-    <button class="tab" onclick="exportCSV()">ส่งออก CSV</button>
-    <button class="tab" onclick="window.print()">พิมพ์ / PDF</button>
+  <div class="navrow">
+    <button class="nav" onclick="go(2)">ย้อนกลับไปแก้รายการ</button>
+    <span></span>
   </div>
-
-  <section class="card tabpane on" id="out-p4">
-    <div class="doc-head">
-      <h3 id="o-title">แผนรายประมาณการ</h3>
-      <div class="sub" id="o-sub"></div>
-      <div class="doc-meta" id="o-meta"></div>
-    </div>
-    <div style="overflow-x:auto">
-    <table>
-      <thead>
-        <tr>
-          <th style="width:6%">ลำดับ</th>
-          <th>รายการ</th>
-          <th style="width:8%">หน่วย</th>
-          <th style="width:8%">ปริมาณ</th>
-          <th style="width:10%">วัสดุ/หน่วย</th>
-          <th style="width:11%">ค่าวัสดุ</th>
-          <th style="width:10%">แรงงาน/หน่วย</th>
-          <th style="width:11%">ค่าแรง</th>
-          <th style="width:11%">รวม</th>
-        </tr>
-      </thead>
-      <tbody id="p4Body"></tbody>
-    </table>
-    </div>
-  </section>
-
-  <section class="card tabpane" id="out-p5">
-    <div class="doc-head">
-      <h3>แบบ ปร.5 สรุปค่าก่อสร้าง</h3>
-      <div class="doc-meta" id="o-p5meta"></div>
-    </div>
-    <table><tbody id="p5Body"></tbody></table>
-    <div id="p5Status" class="status"></div>
-  </section>
-
-  <section class="card tabpane" id="out-p6">
-    <div class="doc-head">
-      <h3>แบบ ปร.6 สรุปค่าก่อสร้างทั้งโครงการ</h3>
-      <div class="doc-meta" id="o-p6meta"></div>
-    </div>
-    <table><tbody id="p6Body"></tbody></table>
-    <div class="bahttext" id="o-baht"></div>
-    <div class="sign">
-      <div><div class="line"></div><span id="s1"></span><br>ผู้ประมาณราคา</div>
-      <div><div class="line"></div><span id="s2"></span><br>ผู้ตรวจ</div>
-      <div><div class="line"></div><span id="s3"></span><br>ผู้เห็นชอบ</div>
-      <div><div class="line"></div><span id="s4"></span><br>ผู้อนุมัติ</div>
-    </div>
-  </section>
-
-</div>
+</section>
 
 </main>
 
 <script>
-const KEY = 'budgetPlanV1';
+const KEY = 'budgetPlanV2';
 const API_KEY = 'budgetApiUrl';
 const $ = id => document.getElementById(id);
 const FIELDS = ['type','name','code','fy','agency','place','budget','units','useF','pAdv','pGuar','pMlr','pVat','sgn1','sgn2','sgn3','sgn4'];
 let items = [];
+let currentStep = 1;
 
 // ตาราง Factor F งานก่อสร้างอาคาร เงินล่วงหน้า 15% ประกันผลงาน 10% ดอกเบี้ย 6% VAT 7%
 // อ้างอิงหนังสือกรมบัญชีกลาง ที่ กค 0433.2/ว 481 ค่าระหว่างช่วงคำนวณด้วยการเทียบสัดส่วน
@@ -395,7 +428,20 @@ function bahtText(n){
   return thaiInt(i) + 'บาท' + (d === '00' ? 'ถ้วน' : thaiInt(d) + 'สตางค์');
 }
 
-/* ---------- อ่านและบันทึกค่า ---------- */
+/* ---------- ขั้นตอน ---------- */
+function go(n){
+  currentStep = n;
+  [1,2,3].forEach(k => {
+    $('step' + k).classList.toggle('on', k === n);
+    const b = $('sb' + k);
+    b.classList.toggle('on', k === n);
+    b.classList.toggle('done', k < n);
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if (n === 2) setTimeout(() => { const cells = document.querySelectorAll('#itemBody tr:last-child input'); if (cells[0] && !items.length) cells[0].focus(); }, 50);
+}
+
+/* ---------- อ่านและบันทึก ---------- */
 function readParams(){
   return {
     type: $('type').value,
@@ -441,18 +487,17 @@ function load(){
 function renderEditor(){
   const body = $('itemBody');
   if (!items.length) {
-    body.innerHTML = `<tr><td colspan="9" class="empty">ยังไม่มีรายการ<br><button class="primary" style="margin-top:10px" onclick="addItem()">เพิ่มรายการแรก</button></td></tr>`;
+    body.innerHTML = `<tr><td colspan="8" class="empty">ยังไม่มีรายการงาน<br><button class="primary nav" style="margin-top:12px" onclick="addItem()">เพิ่มรายการแรก</button></td></tr>`;
   } else {
     body.innerHTML = items.map((it, i) => `
       <tr>
-        <td><input list="groupList" placeholder="หมวด" value="${esc(it.group)}" oninput="upd(${i},'group',this.value)"></td>
+        <td><input list="groupList" placeholder="เช่น งานพื้น" value="${esc(it.group)}" oninput="upd(${i},'group',this.value)"></td>
         <td><input placeholder="ชื่อรายการ" value="${esc(it.name)}" oninput="upd(${i},'name',this.value)"></td>
         <td><input list="unitList" placeholder="หน่วย" value="${esc(it.unit)}" oninput="upd(${i},'unit',this.value)"></td>
-        <td><input type="number" step="any" value="${it.qty}" onfocus="this.select()" oninput="upd(${i},'qty',this.value)"></td>
+        <td><input type="number" step="any" class="num" value="${it.qty}" onfocus="this.select()" oninput="upd(${i},'qty',this.value)"></td>
         <td><input type="number" step="any" value="${it.mat}" onfocus="this.select()" oninput="upd(${i},'mat',this.value)"></td>
-        <td><input type="number" step="any" value="${it.lab}" onfocus="this.select()" oninput="upd(${i},'lab',this.value)"></td>
+        <td><input type="number" step="any" value="${it.lab}" onfocus="this.select()" onkeydown="rowKey(event,${i})" oninput="upd(${i},'lab',this.value)"></td>
         <td class="num" id="rowtot${i}">${fmt((it.qty * it.mat) + (it.qty * it.lab))}</td>
-        <td><input placeholder="หมายเหตุ" value="${esc(it.note)}" onkeydown="rowKey(event,${i})" oninput="upd(${i},'note',this.value)"></td>
         <td><button class="del" title="ลบแถวนี้" onclick="delItem(${i})">×</button></td>
       </tr>`).join('');
   }
@@ -461,20 +506,16 @@ function renderEditor(){
 function refreshGroupList(){
   const groups = [...new Set(items.map(it => (it.group || '').trim()).filter(Boolean))];
   $('groupList').innerHTML = groups.map(g => `<option value="${esc(g)}"></option>`).join('');
-  const n = items.length;
-  $('itemCount').textContent = n ? `${n} รายการ · ${groups.length} หมวด` : '';
+  $('itemCount').textContent = items.length ? `${items.length} รายการ, ${groups.length} หมวด` : '';
 }
 function addItem(){
   items.push({group: '', name: '', unit: '', qty: 1, mat: 0, lab: 0, note: ''});
   renderEditor(); refresh();
-  const inputs = document.querySelectorAll('#itemBody tr:last-child input');
-  if (inputs[0]) inputs[0].focus();
+  const first = document.querySelector('#itemBody tr:last-child input');
+  if (first) first.focus();
 }
 function rowKey(e, i){
-  if (e.key === 'Enter' && i === items.length - 1) {
-    e.preventDefault();
-    addItem();
-  }
+  if (e.key === 'Enter' && i === items.length - 1) { e.preventDefault(); addItem(); }
 }
 function delItem(i){
   items.splice(i, 1);
@@ -495,7 +536,21 @@ function clearAll(){
   $('type').value = 'construction'; syncType();
   $('units').value = '1'; $('budget').value = '0';
   $('pAdv').value = '15'; $('pGuar').value = '10'; $('pMlr').value = '6'; $('pVat').value = '7';
-  renderEditor(); refresh();
+  renderEditor(); refresh(); go(1);
+}
+function loadSample(){
+  if (items.length && !confirm('จะแทนที่ข้อมูลที่กรอกไว้ด้วยข้อมูลตัวอย่างใช่หรือไม่?')) return;
+  applyData({
+    type: 'construction', name: 'งานตัวอย่าง ปรับปรุงอาคารที่พัก', code: '00000', fy: '2569',
+    agency: 'หน่วยงานตัวอย่าง', place: 'สถานที่ตัวอย่าง', budget: 0, units: 5, useF: true,
+    pAdv: '15', pGuar: '10', pMlr: '6', pVat: '7', sgn1: '', sgn2: '', sgn3: '', sgn4: '',
+    items: [
+      {group: 'งานพื้น', name: 'กระเบื้องปูพื้น 60x60 ซม.', unit: 'ตร.ม.', qty: 20, mat: 250, lab: 80, note: ''},
+      {group: 'งานพื้น', name: 'ปูนกาวติดกระเบื้อง', unit: 'ถุง', qty: 5, mat: 120, lab: 0, note: ''},
+      {group: 'งานสี', name: 'สีรองพื้นภายใน', unit: 'ถัง', qty: 2, mat: 900, lab: 300, note: ''}
+    ]
+  });
+  refresh();
 }
 
 /* ---------- คำนวณ ---------- */
@@ -555,11 +610,11 @@ function renderOutput(p, c){
     <td class="num">${fmt(c.unitMat)}</td><td></td><td class="num">${fmt(c.unitLab)}</td><td class="num">${fmt(c.unitCost)}</td></tr>`;
   if (p.units > 1) rows += `<tr class="total"><td colspan="8" style="text-align:right">รวมทั้งหมด (${p.units} หน่วย)</td>
     <td class="num">${fmt(c.baseCost)}</td></tr>`;
-  $('p4Body').innerHTML = rows || `<tr><td colspan="9" class="empty">ยังไม่มีรายการ ไปที่หน้ากรอกเพื่อเพิ่มรายการงาน</td></tr>`;
+  $('p4Body').innerHTML = rows || `<tr><td colspan="9" class="empty">ยังไม่มีรายการ กลับไปขั้นที่ 2 เพื่อเพิ่มรายการงาน</td></tr>`;
 
   const p5 = [
     ['ค่างานต้นทุนรวม', fmt(c.baseCost)],
-    ['Factor F', c.isC && p.useF ? c.F.toFixed(4) : 'ไม่ใช้'],
+    ['ค่า F', c.isC && p.useF ? c.F.toFixed(4) : 'ไม่ใช้'],
     ['ค่าก่อสร้าง (ค่างานต้นทุน × F)', fmt(c.constructionCost)],
     ['ปรับยอด (วงเงิน − ค่าก่อสร้าง)', p.budget > 0 ? fmt(c.adjust) : '-'],
     ['รวมค่าก่อสร้างทั้งสิ้น', fmt(c.finalTotal)],
@@ -572,7 +627,7 @@ function renderOutput(p, c){
     ? (Math.abs(c.adjust) < 0.005
         ? `<span class="good">ค่าก่อสร้างตรงกับวงเงินพอดี</span>`
         : `<span class="${c.adjust >= 0 ? 'good' : 'bad'}">${c.adjust >= 0 ? 'วงเงินเหลือ' : 'ค่าก่อสร้างเกินวงเงิน'} ${fmt(Math.abs(c.adjust))} บาท</span>`)
-    : `<span style="color:var(--ink2)">ยังไม่ได้กรอกวงเงิน ระบบจะใช้ค่าก่อสร้างตามสูตรเป็นยอดรวม</span>`;
+    : `<span style="color:var(--ink2)">ยังไม่ได้ใส่วงเงิน ระบบจะใช้ค่าก่อสร้างตามสูตรเป็นยอดรวม</span>`;
   $('o-p5meta').innerHTML = [p.name, p.code ? 'รหัสงาน ' + esc(p.code) : ''].filter(Boolean).join(' | ');
 
   $('o-p6meta').innerHTML = [
@@ -610,16 +665,16 @@ function exportCSV(){
   lines.push(['แผนรายประมาณการ', p.name, p.code].map(q).join(','));
   lines.push(['ปีงบประมาณ', p.fy, 'หน่วยงาน', p.agency].map(q).join(','));
   lines.push('');
-  lines.push(['ลำดับ','หมวด','รายการ','หน่วย','ปริมาณ','วัสดุ/หน่วย','ค่าวัสดุ','แรงงาน/หน่วย','ค่าแรง','รวม','หมายเหตุ'].map(q).join(','));
+  lines.push(['ลำดับ','หมวด','รายการ','หน่วย','จำนวน','วัสดุ/หน่วย','ค่าวัสดุ','แรงงาน/หน่วย','ค่าแรง','รวม'].map(q).join(','));
   let n = 0;
   c.groups.forEach(g => g.rows.forEach(r => {
     n++;
-    lines.push([n, g.name, r.name, r.unit, r.qty, r.mat, r.matTot, r.lab, r.labTot, r.tot, r.note].map(q).join(','));
+    lines.push([n, g.name, r.name, r.unit, r.qty, r.mat, r.matTot, r.lab, r.labTot, r.tot].map(q).join(','));
   }));
-  lines.push(['','','รวมต่อ 1 หน่วย','','','',c.unitMat,'',c.unitLab,c.unitCost,''].map(q).join(','));
+  lines.push(['','','รวมต่อ 1 หน่วย','','','',c.unitMat,'',c.unitLab,c.unitCost].map(q).join(','));
   lines.push('');
   lines.push(['ค่างานต้นทุนรวม', c.baseCost].map(q).join(','));
-  lines.push(['Factor F', c.F].map(q).join(','));
+  lines.push(['ค่า F', c.F].map(q).join(','));
   lines.push(['ค่าก่อสร้าง', c.constructionCost].map(q).join(','));
   lines.push(['ปรับยอด', c.adjust].map(q).join(','));
   lines.push(['รวมค่าก่อสร้างทั้งสิ้น', c.finalTotal].map(q).join(','));
@@ -636,11 +691,10 @@ function setMsg(text, ok){ $('cloudMsg').innerHTML = `<span class="${ok ? 'good'
 
 function applyLock(status){
   const locked = status === 'อนุมัติแล้ว';
-  document.querySelectorAll('.col-edit input, .col-edit select, .col-edit button').forEach(el => {
-    if (el.closest('#cloudSection')) return;
-    if (el.classList.contains('keep')) return;
+  document.querySelectorAll('#step1 input, #step1 select, #step1 button:not(.nav), #step2 input, #step2 button:not(.nav), #step3 > details.keep:not(#cloudSection) input').forEach(el => {
     el.disabled = locked;
   });
+  $('addBtn').disabled = locked;
   const chip = $('statusChip');
   chip.textContent = status || 'ยังไม่บันทึก';
   chip.className = 'chip' + (status === 'อนุมัติแล้ว' ? ' lock' : (status ? ' ok' : ''));
@@ -744,6 +798,7 @@ syncType();
 renderEditor();
 refresh();
 showTab('p4');
+go(1);
 </script>
 </body>
 </html>
